@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>震撼视觉效果</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // 设置画布大小
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ["#FFD700", "#FF6347", "#00FFFF", "#FF69B4", "#32CD32", "#FF4500", "#00CED1", "#FFFF00"];
+
+        // 创建粒子对象
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.size = Math.random() * 10 + 5;
+                this.vx = (Math.random() - 0.5) * 5;
+                this.vy = (Math.random() - 0.5) * 5;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.size -= 0.1;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // 创建粒子
+        function createParticles(x, y) {
+            for (let i = 0; i < 10; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const particle = new Particle(x, y, color);
+                particles.push(particle);
+            }
+        }
+
+        // 鼠标移动事件
+        canvas.addEventListener("mousemove", (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            createParticles(mouseX, mouseY);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 更新和绘制粒子
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const particle = particles[i];
+                particle.update();
+                particle.draw();
+
+                // 移除不可见或消失的粒子
+                if (particle.size <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        animate();
+    </script>
+</body>
+</html>

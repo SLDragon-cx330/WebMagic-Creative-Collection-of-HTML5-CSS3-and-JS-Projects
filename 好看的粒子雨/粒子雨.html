@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>更炫酷的动态网页示例</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        // 获取canvas元素和绘图上下文
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // 设置canvas的宽度和高度
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // 粒子对象
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1; // 随机大小
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`; // 随机颜色
+                this.velocityY = Math.random() * 3 + 1; // 随机竖直速度
+            }
+
+            // 更新粒子的位置
+            update() {
+                this.y += this.velocityY;
+
+                // 当粒子到达画布底部时，重新放置到画布顶部
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                }
+            }
+
+            // 绘制粒子
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        // 创建粒子数组
+        const particles = [];
+        const numParticles = 100;
+
+        // 初始化粒子
+        for (let i = 0; i < numParticles; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            particles.push(new Particle(x, y));
+        }
+
+        // 动画循环函数
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        // 启动动画
+        animate();
+    </script>
+</body>
+</html>

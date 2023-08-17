@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3D立方体</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      perspective: 1000px;
+    }
+
+    .cube {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(45deg) rotateY(45deg);
+      animation: rotate 5s infinite linear;
+    }
+
+    .cube-face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: transparent;
+      border: 1px solid #ccc;
+    }
+
+    .cube-face .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .front {
+      transform: translateZ(100px);
+    }
+
+    .back {
+      transform: translateZ(-100px);
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(100px);
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(100px);
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(100px);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(100px);
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotateX(45deg) rotateY(45deg);
+      }
+      100% {
+        transform: rotateX(45deg) rotateY(405deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="cube">
+      <div class="cube-face front">
+        <img class="image" src="front.jpg" alt="Front Image">
+      </div>
+      <div class="cube-face back">
+        <img class="image" src="back.jpg" alt="Back Image">
+      </div>
+      <div class="cube-face top">
+        <img class="image" src="top.jpg" alt="Top Image">
+      </div>
+      <div class="cube-face bottom">
+        <img class="image" src="bottom.jpg" alt="Bottom Image">
+      </div>
+      <div class="cube-face left">
+        <img class="image" src="left.jpg" alt="Left Image">
+      </div>
+      <div class="cube-face right">
+        <img class="image" src="right.jpg" alt="Right Image">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

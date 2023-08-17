@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Colorful Moving Doodle</title>
+  <style>
+    /* 设置整个页面铺满屏幕 */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    /* 将 Canvas 铺满整个页面 */
+     #canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 1px solid black;
+      image-rendering: pixelated; /* 确保画布保持像素大小，防止插值处理 */
+
+      /* 添加背景图片设置 */
+      background-image: url('background-image.jpg');
+      background-size: cover; /* 调整背景图片大小以覆盖整个画布 */
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    // 获取 Canvas 元素和 2D 上下文
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 设置方框的大小和初始位置
+    const boxSize = 5; // 缩小方块的大小
+    const numBoxesX = Math.ceil(canvas.width / boxSize);
+    const numBoxesY = Math.ceil(canvas.height / boxSize);
+
+    // 存储每个位置的颜色信息
+    const colors = {};
+
+    // 随机生成颜色
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    // 绘制方框的函数
+    function drawBox(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x * boxSize, y * boxSize, boxSize, boxSize);
+    }
+
+    // 更新方框位置和绘制涂鸦
+    function update() {
+      // 绘制之前记录的位置颜色信息
+      for (const key in colors) {
+        if (colors.hasOwnProperty(key)) {
+          const [x, y] = key.split('_').map(Number);
+          drawBox(x, y, colors[key]);
+        }
+      }
+
+      // 随机生成一个颜色
+      const color = getRandomColor();
+
+      // 绘制方框并记录位置颜色信息
+      drawBox(boxX, boxY, color);
+      colors[`${boxX}_${boxY}`] = color;
+
+      // 移动方框
+      const velocityX = Math.floor(Math.random() * 3) - 1; // 随机生成速度
+      const velocityY = Math.floor(Math.random() * 3) - 1;
+      boxX += velocityX;
+      boxY += velocityY;
+
+      // 边界检测
+      if (boxX < 0) {
+        boxX = numBoxesX - 1;
+      } else if (boxX >= numBoxesX) {
+        boxX = 0;
+      }
+      if (boxY < 0) {
+        boxY = numBoxesY - 1;
+      } else if (boxY >= numBoxesY) {
+        boxY = 0;
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    // 启动动画
+    let boxX = Math.floor(Math.random() * numBoxesX);
+    let boxY = Math.floor(Math.random() * numBoxesY);
+    update();
+  </script>
+</body>
+</html>

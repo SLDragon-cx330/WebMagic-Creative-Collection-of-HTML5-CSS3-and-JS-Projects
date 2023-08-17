@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .login-box {
+      background-color: rgba(255, 255, 255, 0.7); /* 透明度为0.7的白色背景 */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+    }
+    
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+    
+    .login-box input[type="submit"] {
+      width: 100%;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .login-box input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  </div>
+</body>
+</html>

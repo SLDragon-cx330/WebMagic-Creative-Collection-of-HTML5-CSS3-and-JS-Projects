@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>视觉效果震撼的网页</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // 设置画布大小
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.radius = Math.random() * 2 + 1;
+                this.angleX = Math.random() * 6;
+                this.angleY = Math.random() * 6;
+            }
+
+            update() {
+                this.x += Math.sin(this.angleX) * 2;
+                this.y += Math.sin(this.angleY) * 2;
+                this.angleX += 0.01;
+                this.angleY += 0.01;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+
+        function createParticles() {
+            for (let i = 0; i < 100; i++) {
+                const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                const particle = new Particle(canvas.width / 2, canvas.height / 2, color);
+                particles.push(particle);
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+        }
+
+        createParticles();
+        animate();
+    </script>
+</body>
+</html>

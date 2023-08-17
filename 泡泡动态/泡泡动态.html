@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>动态彩色泡泡页面</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+    
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.8;
+      pointer-events: none;
+      animation-name: float;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(200px, -200px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function createBubble() {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      const size = Math.random() * 40 + 20;
+      const color = getRandomColor();
+      
+      bubble.style.left = x + 'px';
+      bubble.style.top = y + 'px';
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+      bubble.style.backgroundColor = color;
+      
+      document.body.appendChild(bubble);
+      
+      const animationDuration = Math.random() * 6 + 4; // 随机生成动画持续时间
+      
+      bubble.style.animationDuration = animationDuration + 's';
+      
+      bubble.addEventListener('animationend', () => {
+        bubble.remove(); // 动画结束时移除泡泡
+      });
+    }
+    
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+    
+    setInterval(createBubble, 1000);
+  </script>
+</body>
+</html>

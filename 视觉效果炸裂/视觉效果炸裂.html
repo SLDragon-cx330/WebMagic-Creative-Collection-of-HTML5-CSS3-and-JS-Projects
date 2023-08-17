@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>视觉效果震撼的网页</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // 设置画布大小
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 10 + 2;
+                this.speedX = (Math.random() - 0.5) * 5;
+                this.speedY = (Math.random() - 0.5) * 5;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.size > 0.2) this.size -= 0.1;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+
+        function createParticles(x, y) {
+            for (let i = 0; i < 10; i++) {
+                const particle = new Particle(x, y);
+                particles.push(particle);
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                if (particles[i].size <= 0.3) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        canvas.addEventListener("mousemove", (e) => {
+            const { offsetX, offsetY } = e;
+            createParticles(offsetX, offsetY);
+        });
+
+        animate();
+    </script>
+</body>
+</html>

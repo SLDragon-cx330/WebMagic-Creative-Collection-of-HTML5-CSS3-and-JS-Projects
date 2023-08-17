@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>漂亮的搜索框</title>
+  <style>
+    /* CSS样式 */
+    @keyframes backgroundAnimation {
+      0% {
+        background-color: #FFC0CB; /* 起始颜色为粉色 */
+      }
+      50% {
+        background-color: #87CEEB; /* 中间颜色为天蓝色 */
+      }
+      100% {
+        background-color: #FFC0CB; /* 结束颜色为粉色 */
+      }
+    }
+    
+    body {
+      animation: backgroundAnimation 6s infinite; /* 6秒的动画循环 */
+    }
+    .search-form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 100px;
+    }
+    .search-input {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      transition: box-shadow 0.3s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .search-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .search-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-form">
+    <form id="searchForm" action="/search" method="get">
+      <input class="search-input" type="text" name="query" placeholder="搜索...">
+      <input class="search-button" type="submit" value="搜索">
+    </form>
+  </div>
+</body>
+</html>

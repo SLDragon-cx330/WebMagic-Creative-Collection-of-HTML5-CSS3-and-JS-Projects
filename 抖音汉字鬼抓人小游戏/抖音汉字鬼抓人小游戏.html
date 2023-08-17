@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>追逐游戏</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('background.jpg'); /* 替换成背景图的URL */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    canvas {
+      border: none;
+    }
+    .button-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* 两个按钮之间的距离 */
+    }
+    .game-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #f0f0f0;
+      border: 2px solid #888;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .game-button:hover {
+      background-color: #ddd;
+      border-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="600" height="600"></canvas>
+  <div class="button-container">
+    <button id="invincibleButton" class="game-button">急急如意令，是鬼就不要动</button>
+    <button id="clearGhostsButton" class="game-button">妈咪妈咪哄，鬼鬼消失术</button>
+  </div>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const boxSize = 30;
+    const canvasSize = 600;
+    const player = {
+      x: canvasSize / 2,
+      y: canvasSize / 2,
+      speed: 3,
+      dx: 0,
+      dy: 0,
+    };
+    const ghosts = [];
+    let gameOver = false;
+    let startTime = 0;
+    let invincibleMode = false;
+
+    function drawPlayer() {
+      ctx.font = '24px Arial';
+      ctx.fillStyle = 'white';
+      ctx.fillText('我', player.x, player.y);
+    }
+
+    function drawGhost(x, y) {
+      ctx.font = '24px Arial';
+      ctx.fillStyle = 'red';
+      ctx.fillText('鬼', x, y);
+    }
+
+    function drawWall(x, y) {
+      ctx.font = '24px Arial';
+      ctx.fillStyle = 'green';
+      ctx.fillText('墙', x, y + boxSize - 6); // 调整绘制位置
+    }
+
+    function generateGhost() {
+      ghosts.push({
+        x: Math.floor(Math.random() * (canvasSize / boxSize)) * boxSize,
+        y: Math.floor(Math.random() * (canvasSize / boxSize)) * boxSize,
+      });
+    }
+
+    function draw() {
+      if (gameOver) {
+        return;
+      }
+
+      ctx.clearRect(0, 0, canvasSize, canvasSize);
+
+      // 绘制游戏边界
+      for (let x = 0; x < canvasSize; x += boxSize) {
+        drawWall(x, 0);
+        drawWall(x, canvasSize - boxSize);
+      }
+      for (let y = boxSize; y < canvasSize - boxSize; y += boxSize) {
+        drawWall(0, y);
+        drawWall(canvasSize - boxSize, y);
+      }
+
+      drawPlayer();
+
+      // 更新角色位置
+      player.x += player.dx * player.speed;
+      player.y += player.dy * player.speed;
+
+      // 角色的位置循环在画布上
+      if (player.x < boxSize) player.x = canvasSize - boxSize * 2;
+      if (player.x >= canvasSize - boxSize) player.x = boxSize;
+      if (player.y < boxSize) player.y = canvasSize - boxSize * 2;
+      if (player.y >= canvasSize - boxSize) player.y = boxSize;
+
+      // 绘制敌人鬼
+      for (const ghost of ghosts) {
+        if (ghosts.length > 0) {
+          drawGhost(ghost.x, ghost.y);
+          // 敌人鬼向角色移动
+          if (!invincibleMode) {
+            if (ghost.x < player.x) {
+              ghost.x += 1;
+            } else if (ghost.x > player.x) {
+              ghost.x -= 1;
+            }
+            if (ghost.y < player.y) {
+              ghost.y += 1;
+            } else if (ghost.y > player.y) {
+              ghost.y -= 1;
+            }
+          }
+          // 碰撞检测
+          if (
+            player.x < ghost.x + boxSize &&
+            player.x + boxSize > ghost.x &&
+            player.y < ghost.y + boxSize &&
+            player.y + boxSize > ghost.y
+          ) {
+            // 游戏结束
+            gameOver = true;
+            const currentTime = Math.floor((Date.now() - startTime) / 1000);
+            ctx.font = '24px Arial';
+            ctx.fillStyle = 'crimson';
+            ctx.fillText(`游戏结束！已经坚持${currentTime}秒`, 150, canvasSize / 2);
+            return;
+          }
+        }
+      }
+
+      // 更新计时器
+      updateTimer();
+
+      requestAnimationFrame(draw);
+    }
+
+    function updateTimer() {
+      const currentTime = Math.floor((Date.now() - startTime) / 1000);
+      ctx.font = '18px Arial';
+      ctx.fillStyle = 'white';
+      ctx.fillText(`已经坚持 ${currentTime} 秒`, 30, 50);
+    }
+
+    // 监听按钮点击事件
+    const invincibleButton = document.getElementById('invincibleButton');
+    invincibleButton.addEventListener('click', () => {
+      invincibleMode = true;
+    });
+
+    const clearGhostsButton = document.getElementById('clearGhostsButton');
+    clearGhostsButton.addEventListener('click', () => {
+      ghosts.length = 0; // 移除所有的鬼
+    });
+
+    // 监听键盘控制角色移动
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowUp') {
+        player.dx = 0;
+        player.dy = -1;
+      } else if (event.key === 'ArrowDown') {
+        player.dx = 0;
+        player.dy = 1;
+      } else if (event.key === 'ArrowLeft') {
+        player.dx = -1;
+        player.dy = 0;
+      } else if (event.key === 'ArrowRight') {
+        player.dx = 1;
+        player.dy = 0;
+      }
+    });
+
+    // 生成一个新的敌人鬼，间隔为1秒
+    setInterval(generateGhost, 1000);
+
+    // 开始游戏计时
+    startTime = Date.now();
+
+    // 运行游戏循环
+    draw();
+  </script>
+</body>
+</html>

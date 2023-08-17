@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>文字和祝福语</title>
+  <style>
+    /* 粒子效果容器 */
+    #particle-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+background: linear-gradient(#000000, #333333); /* 添加渐变效果 */
+    }
+
+    /* 文字样式 */
+    #text-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    #text {
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      animation: fade-in 3s ease-in-out forwards;
+    }
+
+    /* 输入框样式 */
+    #input-container {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    #input-text {
+      font-size: 24px;
+      padding: 8px;
+    }
+
+    #submit-button {
+      font-size: 24px;
+      padding: 8px 16px;
+      margin-top: 8px;
+    }
+
+    /* 动画效果 */
+    @keyframes fade-in {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particle-container">
+    <canvas id="particle-canvas"></canvas>
+  </div>
+  <div id="text-container">
+    <h1 id="text">祝福语</h1>
+  </div>
+  <div id="input-container">
+    <input type="text" id="input-text" placeholder="输入你的祝福话语">
+    <br>
+    <button id="submit-button">发送祝福</button>
+  </div>
+
+  <script>
+    // 生成粒子效果
+    function createParticles() {
+      const particleContainer = document.getElementById('particle-container');
+      const canvas = document.getElementById('particle-canvas');
+      const context = canvas.getContext('2d');
+      const particles = [];
+
+      // 设置画布大小为容器大小
+      canvas.width = particleContainer.clientWidth;
+      canvas.height = particleContainer.clientHeight;
+
+      // 创建粒子对象
+      function Particle(x, y, radius, color, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+        this.speedX = speedX;
+        this.speedY = speedY;
+      }
+
+      // 更新粒子位置
+      Particle.prototype.update = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // 边界检测，使粒子在画布内移动
+        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+          this.speedX = -this.speedX;
+        }
+        if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+          this.speedY = -this.speedY;
+        }
+      };
+
+      // 绘制粒子
+      Particle.prototype.draw = function() {
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        context.fillStyle = this.color;
+        context.fill();
+      };
+
+      // 生成随机颜色
+      function randomColor() {
+        const colors = ['#FF6138', '#FFBE53', '#2980B9', '#282741', '#F7FD04'];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      // 生成随机速度
+      function randomSpeed() {
+        return (Math.random() - 0.5) * 2; // 随机速度范围为-1到1之间
+      }
+
+      // 创建粒子并添加到数组中
+      for (let i = 0; i < 100; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const radius = Math.random() * 3 + 1;
+        const color = randomColor();
+        const speedX = randomSpeed();
+        const speedY = randomSpeed();
+
+        const particle = new Particle(x, y, radius, color, speedX, speedY);
+        particles.push(particle);
+      }
+
+      // 动画循环
+      function animateParticles() {
+        // 清空画布
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 更新和绘制粒子
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
+
+        // 循环调用动画函数
+        requestAnimationFrame(animateParticles);
+      }
+
+      // 开始动画
+      animateParticles();
+    }
+
+    // 页面加载完成后执行
+    window.addEventListener('load', () => {
+      createParticles();
+    });
+
+    // 监听发送祝福按钮点击事件
+    const submitButton = document.getElementById('submit-button');
+    submitButton.addEventListener('click', () => {
+      const inputText = document.getElementById('input-text').value;
+      showBlessing(inputText);
+    });
+
+    // 显示祝福
+    function showBlessing(blessing) {
+      const textContainer = document.getElementById('text-container');
+      const textElement = document.getElementById('text');
+      textElement.innerText = blessing;
+
+      textContainer.style.opacity = '1';
+      textContainer.style.animation = 'none';
+
+      setTimeout(() => {
+        textContainer.style.opacity = '0';
+        textContainer.style.animation = 'fade-in 3s ease-in-out forwards';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

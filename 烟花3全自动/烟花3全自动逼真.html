@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fireworks Effect</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fireworksCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+    let fireworks = [];
+
+    // 设置画布大小
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // 监听窗口大小变化
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    class Particle {
+      constructor(x, y, color, velocityX, velocityY) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+        this.radius = 2.5;
+        this.opacity = 1;
+      }
+
+      update() {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+        this.velocityY += 0.1;
+        this.opacity -= 0.01;
+      }
+
+      draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+        ctx.fill();
+      }
+    }
+
+    class Firework {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.particles = [];
+        for (let i = 0; i < 50; i++) {
+          const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          const velocityX = (Math.random() - 0.5) * 6;
+          const velocityY = Math.random() * -15;
+          this.particles.push(new Particle(x, y, color, velocityX, velocityY));
+        }
+      }
+
+      update() {
+        this.particles.forEach(particle => particle.update());
+      }
+
+      draw(ctx) {
+        this.particles.forEach(particle => particle.draw(ctx));
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      fireworks.forEach((firework, index) => {
+        if (firework.particles[0].opacity <= 0) {
+          fireworks.splice(index, 1);
+        } else {
+          firework.update();
+          firework.draw(ctx);
+        }
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    // 生成5个烟花并添加到fireworks数组中
+    function createFireworks() {
+      for (let i = 0; i < 15; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        fireworks.push(new Firework(x, y));
+      }
+    }
+
+    // 启动动画，并定时触发烟花效果
+    animate();
+    setInterval(createFireworks, 3000); // 每3秒触发一次烟花效果
+  </script>
+</body>
+</html>

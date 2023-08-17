@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Your+Chosen+Font&display=swap" rel="stylesheet">
+    <title>下雪背景效果和生日祝福</title>
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f2f2f2;
+            font-family: 'Your Chosen Font', cursive;
+            animation: backgroundAnimation 5s infinite;
+        }
+
+        #snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .snowflake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        #slideshow {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto; /* 添加这行代码使其居中 */
+        }
+
+        #slideshow img {
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中对齐 */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #slideshow img.active {
+            opacity: 1;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-color: #ffafbd;
+            }
+            50% {
+                background-color: #ffc3a0;
+            }
+            100% {
+                background-color: #ffa0bd;
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* 调整生日快乐标题和下面文字的间距 */
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 28px;
+            margin-bottom: 10px; /* 调整标题和图片之间的间距 */
+        }
+
+        img {
+            width: 200px;
+            border-radius: 50%;
+            margin: 1px 0px; /* 调整图片和下方文字之间的间距 */
+        }
+
+        p {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInAnimation 2s forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .time {
+            font-size: 36px;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            animation-fill-mode: forwards;
+        }
+
+        #days {
+            background-color: #f5f5f5;
+        }
+
+        #hours {
+            background-color: #e0e0e0;
+        }
+
+        #minutes {
+            background-color: #d5d5d5;
+        }
+
+        #seconds {
+            background-color: #cccccc;
+        }
+
+        .time span {
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 5px;
+            color: #333;
+        }
+
+        .ribbon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ribbon:before,
+        .ribbon:after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to bottom, #ff69b4, #ffc3a0, #ffafbd);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: ribbonAnimation 2s infinite;
+        }
+
+        .ribbon:before {
+            top: -100px;
+            left: -50px;
+        }
+
+        .ribbon:after {
+            top: -100px;
+            right: -50px;
+        }
+
+        /* 定义彩带动画 */
+        @keyframes ribbonAnimation {
+            0% {
+                transform: translate(0, 0) rotate(0);
+            }
+            100% {
+                transform: translate(-800px, -800px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="snow-container"></div>
+
+<div class="fade-in">
+    <h1>Welcome to the world of Fate's Light</h1>
+    <p>After reading, remember to like, collect, and review. Hahaha.</p>
+</div>
+
+<div class="container">
+    <h1>生日快乐！</h1>
+    <div id="slideshow">
+        <img src="1.jpg" alt="Image 1" class="active">
+        <img src="2.png" alt="Image 2">
+        <img src="3.png" alt="Image 3">
+    </div>
+    <p>亲爱的命运之光，</p>
+    <p>祝你生日快乐！愿你的生日充满欢乐、幸福和美好的回忆。</p>
+    <p>在这特殊的日子里，我希望你能享受每一刻，并和亲朋好友一起度过一个美好的时光。</p>
+    <p>再次祝你生日快乐！</p>
+</div>
+
+<div id="countdown">
+    <div class="time" id="days"></div>
+    <div class="time" id="hours"></div>
+    <div class="time" id="minutes"></div>
+    <div class="time" id="seconds"></div>
+</div>
+
+<script>
+    // 设置生日日期（月从0开始计数）
+    const birthday = new Date("2023-07-11");
+
+    function updateCountdown() {
+        const now = new Date();
+        const difference = birthday - now;
+
+        // 计算剩余的天数、小时数、分钟数和秒数
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / 1000 / 60) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        // 更新倒计时显示
+        document.getElementById("days").textContent = days.toString().padStart(2, "0") + "天";
+        document.getElementById("hours").textContent = hours.toString().padStart(2, "0") + "小时";
+        document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0") + "分钟";
+        document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0") + "秒";
+    }
+
+    // 每秒更新一次倒计时
+    setInterval(updateCountdown, 1000);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var currentIndex = 0;
+        var slides = $('#slideshow img');
+        var slideCount = slides.length;
+
+        function showSlide(index) {
+            slides.removeClass('active');
+            slides.eq(index).addClass('active');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slideCount;
+            showSlide(currentIndex);
+        }
+
+        // 自动播放幻灯片
+        setInterval(nextSlide, 3000);
+
+        // 初始化显示第一张幻灯片
+        showSlide(currentIndex);
+    });
+</script>
+<script>
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.style.left = Math.random() * window.innerWidth + 'px';
+        snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+        snowflake.style.opacity = Math.random();
+        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+        const randomColor = getRandomColor();
+        snowflake.style.backgroundColor = randomColor;
+
+        snowflake.innerHTML = '生日快乐❤️'; // You can customize the snowflake symbol here
+
+        return snowflake;
+    }
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function snowfall() {
+        const snowContainer = document.getElementById('snow-container');
+        const numSnowflakes = 50; // Adjust the number of snowflakes here
+
+        for (let i = 0; i < numSnowflakes; i++) {
+            const snowflake = createSnowflake();
+            snowContainer.appendChild(snowflake);
+        }
+    }
+
+    snowfall();
+</script>
+</body>
+</html>

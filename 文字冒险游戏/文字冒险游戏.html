@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>文字冒险游戏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    h1 {
+      color: #FF6347;
+    }
+
+    #story {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #FF6347;
+      color: #FFF;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>文字冒险游戏</h1>
+  <div id="story">欢迎来到文字冒险游戏！</div>
+  <div class="button-container">
+    <button onclick="startGame()">开始</button>
+  </div>
+
+  <script>
+    function startGame() {
+      document.getElementById("story").innerHTML = "你在一片神秘的森林中醒来。你发现自己迷失了方向。你应该怎么做？";
+      document.querySelector(".button-container").innerHTML = `
+        <button onclick="makeChoice(1)">向左走</button>
+        <button onclick="makeChoice(2)">向右走</button>
+      `;
+    }
+
+    function makeChoice(choice) {
+      switch (choice) {
+        case 1:
+          document.getElementById("story").innerHTML = "你遇到了一只巨大的熊，它朝你奔来！你应该怎么办？";
+          document.querySelector(".button-container").innerHTML = `
+            <button onclick="makeChoice(3)">逃跑</button>
+            <button onclick="makeChoice(4)">战斗</button>
+          `;
+          break;
+
+        case 2:
+          document.getElementById("story").innerHTML = "你发现一座古老的神庙。你是否进去探险？";
+          document.querySelector(".button-container").innerHTML = `
+            <button onclick="makeChoice(5)">进去</button>
+            <button onclick="makeChoice(6)">继续寻找</button>
+          `;
+          break;
+
+        case 3:
+          document.getElementById("story").innerHTML = "你逃离了熊的追击，并安全返回家园。但是你又发现了一个奇怪的洞穴。你要进去探索吗？";
+          document.querySelector(".button-container").innerHTML = `
+            <button onclick="makeChoice(7)">进去</button>
+            <button onclick="makeChoice(8)">继续寻找</button>
+          `;
+          break;
+
+        case 4:
+          document.getElementById("story").innerHTML = "你与熊展开激烈的战斗，但你不敌它的力量。你失败了！";
+          document.querySelector(".button-container").innerHTML = "";
+          break;
+
+        case 5:
+          document.getElementById("story").innerHTML = "你进入了神庙，但被触发了陷阱。你被困在里面，游戏结束！";
+          document.querySelector(".button-container").innerHTML = "";
+          break;
+
+        case 6:
+          document.getElementById("story").innerHTML = "你继续寻找，最终找到了回家的路。你赢得了游戏！";
+          document.querySelector(".button-container").innerHTML = "";
+          break;
+
+        case 7:
+          document.getElementById("story").innerHTML = "你进入了洞穴，发现了一条通向地下迷宫的隧道。你要进去探索吗？";
+          document.querySelector(".button-container").innerHTML = `
+            <button onclick="makeChoice(9)">进去</button>
+            <button onclick="makeChoice(10)">返回外面</button>
+          `;
+          break;
+
+        case 8:
+          document.getElementById("story").innerHTML = "你继续寻找，最终找到了回家的路。你赢得了游戏！";
+          document.querySelector(".button-container").innerHTML = "";
+          break;
+
+        case 9:
+          document.getElementById("story").innerHTML = "你进入了地下迷宫，面临着无数的选择和危险。这是另一个故事了...";
+          document.querySelector(".button-container").innerHTML = "";
+          break;
+
+        case 10:
+          document.getElementById("story").innerHTML = "你返回洞口，继续寻找其他冒险机会。";
+          document.querySelector(".button-container").innerHTML = `
+            <button onclick="makeChoice(7)">进入洞穴</button>
+            <button onclick="makeChoice(8)">继续寻找</button>
+          `;
+          break;
+
+        default:
+          break;
+      }
+    }
+  </script>
+</body>
+</html>

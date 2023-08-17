@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>能量棒加载页面 - 可爱版</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #FEE2E2; /* 淡粉色背景 */
+            color: #FF69B4; /* 热情粉红文字颜色 */
+            font-family: 'Arial', sans-serif;
+        }
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        canvas {
+            border: 2px solid #FF69B4; /* 热情粉红边框 */
+            box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.3); /* 粉红色阴影 */
+            border-radius: 20px; /* 圆角边框 */
+        }
+        .loading-text {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold; /* 加粗字体 */
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <canvas id="energyBarCanvas" width="400" height="30"></canvas>
+        <div class="loading-text">🌈 loading 0%</div> <!-- 可爱的彩虹字符 -->
+    </div>
+ 
+    <script>
+        // 获取Canvas元素和上下文
+        const canvas = document.getElementById('energyBarCanvas');
+        const ctx = canvas.getContext('2d');
+ 
+        // 能量棒的宽度和高度
+        const barWidth = canvas.width;
+        const barHeight = canvas.height;
+ 
+        // 加载进度（0-100）
+        let progress = 0;
+ 
+        // 设置能量棒的颜色和背景颜色
+        const barColor = '#FF69B4'; // 热情粉红色
+        const bgColor = '#FEE2E2'; // 淡粉色背景
+ 
+        // 绘制能量棒的函数
+        function drawEnergyBar() {
+            // 清空Canvas
+            ctx.clearRect(0, 0, barWidth, barHeight);
+ 
+            // 绘制背景矩形
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, barWidth, barHeight);
+ 
+            // 添加渐变效果
+            const gradient = ctx.createLinearGradient(0, 0, barWidth, 0);
+            gradient.addColorStop(0, '#FF69B4');
+            gradient.addColorStop(1, '#FF00FF');
+ 
+            // 绘制能量棒
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, barWidth * (progress / 100), barHeight);
+ 
+            // 绘制🍓字符光晕效果
+            ctx.fillStyle = 'rgba(255, 105, 180, 0.5)'; // 粉红色光晕效果
+            ctx.font = '30px Arial';
+            ctx.fillText('🐢', barWidth * (progress / 100) - 15, barHeight / 2 + 10);
+ 
+            // 获取进度文字的元素
+            const loadingText = document.querySelector('.loading-text');
+ 
+            // 更新进度文字内容
+            loadingText.textContent = `🌈 loading ${progress}%`; // 可爱的彩虹字符
+        }
+ 
+        // 更新加载进度并重绘能量棒
+        function updateProgress(newProgress) {
+            if (newProgress >= 0 && newProgress <= 100) {
+                progress = newProgress;
+                drawEnergyBar();
+            }
+        }
+ 
+        // 模拟加载过程，每30毫秒增加一点加载进度
+        function simulateLoading() {
+            const interval = setInterval(() => {
+                updateProgress(progress + 1);
+                if (progress === 100) {
+                    clearInterval(interval);
+                }
+            }, 30);
+        }
+ 
+        // 开始加载
+        simulateLoading();
+    </script>
+</body>
+</html>

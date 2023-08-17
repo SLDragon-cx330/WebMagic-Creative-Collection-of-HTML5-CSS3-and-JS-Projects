@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>简洁美观的轮播图</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>简洁美观的轮播图</h1>
+  </header>
+
+  <main>
+    <div class="slideshow-container">
+      <div class="slide">
+        <img src="image1.jpg" alt="Image 1">
+      </div>
+      <div class="slide">
+        <img src="image2.jpg" alt="Image 2">
+      </div>
+      <div class="slide">
+        <img src="image3.jpg" alt="Image 3">
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023-7-16 @命运之光制作 </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+<style>
+/* 重置默认样式 */
+body, h1, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+header {
+  background-color: #333;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  color: #fff;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+  }
+
+  function nextSlide() {
+    currentSlide++;
+    if (currentSlide >= slides.length) {
+      currentSlide = 0;
+    }
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 2000); // 每 2 秒切换一张幻灯片
+
+  showSlide(currentSlide); // 显示第一张幻灯片
+});
+
+</script>

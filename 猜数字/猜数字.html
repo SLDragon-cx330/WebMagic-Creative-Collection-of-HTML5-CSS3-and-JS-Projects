@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>猜数字游戏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    #result {
+      color: #333;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+  <script>
+    var randomNumber = Math.floor(Math.random() * 100) + 1;
+    var guesses = 0;
+
+    function checkGuess() {
+      var userGuess = document.getElementById('guess').value;
+      var result = document.getElementById('result');
+
+      userGuess = parseInt(userGuess);
+
+      if (userGuess === randomNumber) {
+        result.innerHTML = '恭喜你，猜对了！';
+      } else if (userGuess < randomNumber) {
+        result.innerHTML = '猜小了，请再试一次。';
+      } else if (userGuess > randomNumber) {
+        result.innerHTML = '猜大了，请再试一次。';
+      }
+
+      guesses++;
+
+      if (guesses === 7) {
+        result.innerHTML += '<br>很遗憾，你没有猜对。正确答案是：' + randomNumber;
+        document.getElementById('guessBtn').disabled = true;
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>猜数字游戏</h1>
+    <p>我心里想着一个1到100之间的数字。你需要在7次机会内猜出这个数字。</p>
+    <p>你的猜测：<input type="text" id="guess"></p>
+    <button id="guessBtn" onclick="checkGuess()">猜！</button>
+    <p id="result"></p>
+  </div>
+</body>
+</html>

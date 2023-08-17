@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>萌翻少女心的发光果冻泡泡</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="jellyCanvas"></canvas>
+
+    <script>
+        // 获取Canvas元素和2D绘图上下文
+        const canvas = document.getElementById('jellyCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // 设置Canvas宽高
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // 定义泡泡数组
+        const bubbles = [];
+
+        // 定义泡泡数量
+        const numBubbles = 40;
+
+        // 定义泡泡最大半径和最小半径
+        const maxRadius = 50;
+        const minRadius = 20;
+
+        // 定义泡泡颜色
+        const colors = ['#FFC0CB', '#FF69B4', '#FF1493', '#FF00FF', '#DA70D6'];
+
+        // 定义一个函数来生成随机数
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // 定义一个构造函数来创建泡泡对象
+        function Bubble(x, y, radius, color) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+            this.dx = random(-2, 2);
+            this.dy = random(-2, 2);
+
+            // 绘制泡泡
+            this.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.shadowColor = this.color;
+                ctx.shadowBlur = 20;
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            };
+
+            // 更新泡泡位置
+            this.update = function () {
+                this.x += this.dx;
+                this.y += this.dy;
+
+                // 碰撞检测
+                if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                    this.dx = -this.dx;
+                }
+                if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                    this.dy = -this.dy;
+                }
+            };
+        }
+
+        // 创建泡泡并添加到数组中
+        for (let i = 0; i < numBubbles; i++) {
+            const x = random(maxRadius, canvas.width - maxRadius);
+            const y = random(maxRadius, canvas.height - maxRadius);
+            const radius = random(minRadius, maxRadius);
+            const color = colors[Math.floor(random(0, colors.length))];
+            bubbles.push(new Bubble(x, y, radius, color));
+        }
+
+        // 动画循环
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制和更新每个泡泡
+            for (let i = 0; i < numBubbles; i++) {
+                bubbles[i].draw();
+                bubbles[i].update();
+            }
+        }
+
+        // 启动动画
+        animate();
+    </script>
+</body>
+</html>
