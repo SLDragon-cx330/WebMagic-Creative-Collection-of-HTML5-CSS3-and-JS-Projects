@@ -17,7 +17,7 @@
 
 [项目描述]
 
-- 项目链接: [链接]
+- 项目链接: [3D正方体](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/3D正方体/3D正方体.html)
 - 截图: ![3D正方体截图](截图链接)
 
 ### Canvas实现炫彩粒子
