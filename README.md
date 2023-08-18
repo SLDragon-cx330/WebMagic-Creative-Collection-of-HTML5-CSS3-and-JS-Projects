@@ -51,7 +51,7 @@
 
 [项目描述]
 
-- 项目链接: [彩虹星星](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/彩虹星星/彩虹星星.html)
+- 项目链接: [彩虹星星](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/彩虹星星/彩虹背景和旋转星星的炫酷网页.html)
 - 截图: ![彩虹星星](https://img-blog.csdnimg.cn/c1553c77d0f14bb3b58597405d3c6a3b.gif)
 
 ### 炫彩数字雨
