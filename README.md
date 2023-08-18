@@ -86,7 +86,8 @@
 
 [项目描述]
 
-- 项目链接: [星空粒子连线](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/星空粒子连线/粒子连线.html)
+- 项目链接: [星空粒子连线](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/星空粒子连线
+/粒子连线.html)
 - 截图: ![星空粒子连线](https://img-blog.csdnimg.cn/9cd965f9ab2347439563142a7c46c205.gif)
 
 ### 烟花3全自动
