@@ -152,13 +152,6 @@
 - 项目链接: [简洁美观的轮播图](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/简洁美观的轮播图/简洁美观的轮播图.html)
 - 截图: ![简洁美观的轮播图](https://img-blog.csdnimg.cn/73a9e1c599bc49f1b67eec5ac5c9a221.gif)
 
-### 简洁美观的轮播图
-
-[项目描述]
-
-- 项目链接: [简洁美观的轮播图](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/简洁美观的轮播图/简洁美观的轮播图.html)
-- 截图: ![简洁美观的轮播图](https://img-blog.csdnimg.cn/73a9e1c599bc49f1b67eec5ac5c9a221.gif)
-
 ### 3D翻转登录页面
 
 创意的3D翻转登录页面，为用户提供全新的交互体验。
@@ -171,7 +164,7 @@
 创意的3D翻转登录页面，为用户提供全新的交互体验。
 
 - 项目链接: [登录页面](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/登录页面/登录页面.html)
-- 截图: ![登录页面](https://img-blog.csdnimg.cn/1e4082ae459b499ab44b7df6c24c2693.gif)
+- 截图: ![登录页面](https://img-blog.csdnimg.cn/0bb2fa19678f40c2b0e73c98a97e34b2.png)
 
 ### 文字冒险游戏
 
@@ -207,13 +200,6 @@
 
 - 项目链接: [发送祝福语](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/发送祝福语/发送祝福语.html)
 - 截图: ![发送祝福语](https://img-blog.csdnimg.cn/21ee9ed021464f98ab60d7296defd879.png)
-
-### 高考加油
-
-[项目描述]
-
-- 项目链接: [高考加油](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/高考加油/高考加油.html)
-- 截图: ![高考加油](https://img-blog.csdnimg.cn/3fb5185c6a754e968799de4cd53f221d.png)
 
 ### 高考加油
 
