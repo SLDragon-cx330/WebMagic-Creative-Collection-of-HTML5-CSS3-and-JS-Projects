@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进制转换器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="converter">
+        <h2>进制转换器</h2>
+        <div class="input-section">
+            <input id="inputValue" type="text" placeholder="请输入数字" oninput="convertValue()">
+            <select id="inputBase" onchange="convertValue()">
+                <option value="2">二进制</option>
+                <option value="8">八进制</option>
+                <option value="10" selected>十进制</option>
+                <option value="16">十六进制</option>
+            </select>
+        </div>
+        <div class="output-section">
+            <label>二进制:</label> <span id="outputBinary"></span><br>
+            <label>八进制:</label> <span id="outputOctal"></span><br>
+            <label>十进制:</label> <span id="outputDecimal"></span><br>
+            <label>十六进制:</label> <span id="outputHex"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+<div class="footer">
+        @21计科刘少龙——其实我的梦想是世界和平
+    </div>
+</body>
+</html>
+
+
+

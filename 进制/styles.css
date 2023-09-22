@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('background-image.jpg'); /* 请替换为您的背景图片 URL */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.converter {
+    background-color: rgba(255, 255, 255, 0.7); /* 增加了透明度 */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* 将宽度调整为 80% */
+    max-width: 350px; /* 将最大宽度调整为 350px */
+}
+
+h2 {
+    text-align: center;
+}
+
+.input-section, .output-section {
+    margin-top: 10px;
+}
+
+input, select {
+ 
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.output-section span {
+    font-weight: bold;
+}
+.footer {
+    position: fixed; 
+    bottom: 10px; 
+    width: 100%; 
+    text-align: center; 
+    font-size: 14px; 
+    color: #888888;
+}
