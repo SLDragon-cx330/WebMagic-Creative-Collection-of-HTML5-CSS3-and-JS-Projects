@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中秋节贺卡</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('your-background-image.jpg'); /* 替换 'your-background-image.jpg' 为你的网页背景图路径 */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        #card {
+            width: 300px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 0.1em solid transparent;
+            animation: typing 3s steps(26, end),
+                cursor-blink 0.3s step-end infinite alternate;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+            white-space: pre-line; /* 保留换行 */
+            overflow: hidden;
+            border-right: 0.1em solid transparent;
+            animation: typing 3s steps(26, end),
+                cursor-blink 0.3s step-end infinite alternate;
+        }
+
+        #text-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        #avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        #avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-image: url('your-avatar-image.jpg'); /* 替换 'your-avatar-image.jpg' 为你的头像图路径 */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 26ch;
+            }
+        }
+
+        @keyframes cursor-blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="card">
+    <div id="avatar-container">
+        <div id="avatar"></div>
+    </div>
+    <div id="text-container">
+        <h1 id="greeting-title">中秋节快乐！</h1>
+        <p id="greeting-text">月圆夜，思念在心<br>愿幸福的时光洒满你们的每一天。<br>愿你和家人团圆，共度温馨的中秋佳节。<br>月圆人团圆，幸福满满！</p>
+    </div>
+</div>
+
+<script>
+    const avatar = document.getElementById('avatar');
+    const card = document.getElementById('card');
+    const greetingTitle = document.getElementById('greeting-title');
+    const greetingText = document.getElementById('greeting-text');
+
+    let isMidAutumnTheme = true; // 初始主题为中秋
+
+    avatar.addEventListener('click', () => {
+        // 切换主题
+        if (isMidAutumnTheme) {
+            document.body.style.backgroundImage = 'url("your-national-day-background.jpg")'; // 替换 'your-national-day-background.jpg' 为国庆主题的网页背景图路径
+            avatar.style.backgroundImage = 'url("your-national-day-avatar.jpg")'; // 替换 'your-national-day-avatar.jpg' 为国庆主题的头像图路径
+            greetingTitle.textContent = '国庆快乐！'; // 更新贺卡标题
+            greetingText.textContent = ''; // 清空贺卡文字
+            isMidAutumnTheme = false; // 切换主题状态
+            typeText("愿祖国繁荣富强，人民幸福安康。\n国庆节，我们共庆盛世华章。\n让我们携手奋进，共筑美好明天。\n祝福伟大的祖国，永远充满荣光！");
+        } else {
+            document.body.style.backgroundImage = 'url("your-background-image.jpg")'; // 替换 'your-background-image.jpg' 为中秋主题的网页背景图路径
+            avatar.style.backgroundImage = 'url("your-avatar-image.jpg")'; // 替换 'your-avatar-image.jpg' 为中秋主题的头像图路径
+            greetingTitle.textContent = '中秋节快乐！'; // 更新贺卡标题
+            greetingText.textContent = ''; // 清空贺卡文字
+            isMidAutumnTheme = true; // 切换主题状态
+            typeText("月圆夜，思念在心\n愿幸福的时光洒满你们的每一天。\n愿你和家人团圆，共度温馨的中秋佳节。\n月圆人团圆，幸福满满！");
+        }
+    });
+
+    function typeText(text) {
+        let index = 0;
+        const textContainer = greetingText;
+        textContainer.innerHTML = ''; // 清空文字内容
+
+        function type() {
+            if (index < text.length) {
+                textContainer.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, 100); // 设置每个字符出现的时间间隔
+            }
+        }
+
+        type(); // 开始逐个字符显示文字
+    }
+
+</script>
+</body>
+</html>
