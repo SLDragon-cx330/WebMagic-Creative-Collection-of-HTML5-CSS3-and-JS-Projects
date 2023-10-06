@@ -225,6 +225,11 @@
 好看好用
 - 项目链接: [中秋国庆贺卡](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/中秋国庆贺卡/888.html)
 
+### 波浪进度条
+好看好用（波浪进度条）
+- 项目链接: [波浪进度条](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/波浪/波浪进度条.html)
+
+
 ### 进制转换器
 
 一个简单的进制转换器，手机上使用。
