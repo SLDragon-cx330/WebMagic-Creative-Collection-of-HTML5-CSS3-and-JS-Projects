@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Vocabulary Cards</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg'); /* 替换 'background.jpg' 为您的背景图片路径 */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 80%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* 设置卡片透明度为0.6 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 18px;
+            text-align: center;
+        }
+.card.clicked {
+    background-color: rgba(255, 0, 0, 0.8); /* 修改为您想要的点击后颜色 */
+    transition: background-color 0.3s; /* 添加渐变效果 */
+}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Ambition</h2>
+        <p>野心</p>
+    </div>
+
+    <!-- 添加更多卡片，每个单词一个卡片 -->
+    <div class="card">
+        <h2>Ancient</h2>
+        <p>古老</p>
+    </div>
+
+    <!-- 添加更多单词的卡片 -->
+
+    <script>
+        // 您可以使用JavaScript来动态添加更多的单词卡片
+        const words = [
+    { word: "Ambition", translation: "野心" },
+    { word: "Ancient", translation: "古老" },
+    { word: "Awe", translation: "敬畏" },
+    { word: "Award", translation: "奖励" },
+    { word: "Awkward", translation: "笨拙" },
+    { word: "Amuse", translation: "娱乐" },
+    { word: "Apt", translation: "合适" },
+    { word: "Annoy", translation: "烦恼" },
+    { word: "Boom", translation: "嘹亮" },
+    { word: "Balance", translation: "平衡" },
+    { word: "Blunt", translation: "迟钝" },
+    { word: "Blank", translation: "空白" },
+    { word: "Blush", translation: "脸红" },
+    { word: "Betray", translation: "背叛" },
+    { word: "Crisp", translation: "踏实" },
+    { word: "Complain", translation: "抱怨" },
+    { word: "Challenge", translation: "挑战" },
+    { word: "Caution", translation: "小心谨慎" },
+    { word: "Cater", translation: "满足" },
+    { word: "Convenience", translation: "便利" },
+    { word: "Compete", translation: "竞争" },
+    { word: "Limited", translation: "有限" },
+    { word: "Finite", translation: "有限" },
+    { word: "Compact", translation: "紧凑" },
+    { word: "Calculate", translation: "计算" },
+    { word: "Cheat", translation: "欺骗" },
+    { word: "Cope", translation: "应对" },
+    { word: "Convince", translation: "说服" },
+    { word: "Combine", translation: "结合" },
+    { word: "Combination", translation: "结合" },
+    { word: "Depart", translation: "离开" },
+    { word: "Drift", translation: "漂流" },
+    { word: "Dense", translation: "浓密" },
+    { word: "Convention", translation: "社会习俗" },
+    { word: "Deny", translation: "拒绝" },
+    { word: "Drama", translation: "戏剧" },
+    { word: "Dose", translation: "剂量" },
+    { word: "Exhaust", translation: "筋疲力尽" },
+    { word: "Fatigue", translation: "疲劳" },
+    { word: "Atom", translation: "原子" },
+    { word: "Moist", translation: "潮湿" },
+    { word: "Electron", translation: "电子" },
+    { word: "Electrical", translation: "电的" },
+    { word: "Error", translation: "错误" },
+    { word: "Exhibit", translation: "展示" },
+    { word: "Target", translation: "目标" },
+    { word: "Exaggerate", translation: "夸大" },
+    { word: "Giant", translation: "巨大" },
+    { word: "Urge", translation: "决心" },
+    { word: "Tough", translation: "坚韧" },
+    { word: "Trap", translation: "陷阱" },
+    { word: "Tender", translation: "温和" },
+    { word: "Mild", translation: "温和" },
+    { word: "Ignore", translation: "忽视" },
+    { word: "Perceive", translation: "察觉" },
+    { word: "Idle", translation: "空闲" },
+    { word: "Scarce", translation: "稀缺" },
+    { word: "Thrill", translation: "兴奋" },
+    { word: "Vain", translation: "虚荣" },
+    { word: "Anxiety", translation: "焦虑" },
+    { word: "Defer", translation: "推迟" },
+    { word: "Differ", translation: "不同" },
+    { word: "Indifferent", translation: "漠不关心" },
+    { word: "Mode", translation: "模式" },
+    { word: "Invest", translation: "投资" },
+    { word: "Census", translation: "人口普查" }
+];
+
+
+        // 创建并添加单词卡片到页面
+        words.forEach(wordData => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <h2>${wordData.word}</h2>
+                <p>${wordData.translation}</p>
+            `;
+            document.body.appendChild(card);
+        });
+
+// 获取所有卡片元素
+const cards = document.querySelectorAll('.card');
+
+// 添加点击事件监听器到每个卡片
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        // 切换类来改变样式
+        card.classList.toggle('clicked');
+    });
+});
+
+
+    </script>
+</body>
+</html>
