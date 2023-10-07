@@ -229,6 +229,9 @@
 好看好用（波浪进度条）
 - 项目链接: [波浪进度条](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/波浪/波浪进度条.html)
 
+### 考研英语单词背诵手机版
+好看好用（波浪进度条）
+- 项目链接: [考研英语单词背诵手机版](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/考研单词手机记忆unit1/单词.html)
 
 ### 进制转换器
 
