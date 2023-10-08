@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-End Hello World</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.6); /* 卡片透明度为0.6 */
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ff69b4;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="helloText" class="animated">Hello, World!</h1>
+    </div>
+
+    <script>
+        const helloText = document.getElementById('helloText');
+        const backgrounds = ['background1.jpg', 'background2.jpg', 'background3.jpg'];
+        let backgroundIndex = 0;
+
+        // Function to change the background image every 3 seconds
+        function changeBackground() {
+            document.body.style.backgroundImage = `url('${backgrounds[backgroundIndex]}')`;
+            backgroundIndex = (backgroundIndex + 1) % backgrounds.length;
+            setTimeout(changeBackground, 3000);
+        }
+
+        // Start changing the background image
+        setTimeout(changeBackground, 3000);
+
+        // Add a dynamic effect to the "Hello, World!" text
+        setInterval(function() {
+            helloText.classList.toggle('animated');
+        }, 1000);
+    </script>
+</body>
+</html>
