@@ -1,0 +1,212 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>今天吃啥呀？</title>
+<meta name="keywords" content="今天吃啥呀，果汁导航，果汁排行榜，果汁音乐，果汁实验室" />
+<meta name="description" content="【今天吃啥呀】是果汁导航旗下用餐推荐小站，随机推荐食品，再也不用为今天吃什么发愁了。" />
+<link rel="Shortcut Icon" href="../images/ic.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap-grid.min.css" />
+<link rel="stylesheet" type="text/css" href="eat-min.css?v1.1.7" />
+</head>
+<body>
+<div class="modal fade" id="mre" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="LoginTitle"><b><i class="fa fa-plus"></i>&nbsp;更多</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h5><i class="fa fa-eye"></i>&nbsp;发现</h5>
+          <p><a href="https://m.youlai.cn/huanzhe/food" class="lik mob" target="_blank">能不能吃</a><a href="https://ys.99.com.cn/" class="lik" target="_blank">饮食</a><a href="https://yangsheng.120ask.com/" class="lik" target="_blank">养生</a><a href="https://dxy.com/baike/category/24834?tag_id=0" class="lik" target="_blank">膳食指南</a><a href="https://www.xiachufang.com/" class="lik" target="_blank">下厨房</a><a href="https://yingyang.911cha.com/" class="lik" target="_blank">营养成分查询1</a><a href="https://www.foodwake.com/" class="lik" target="_blank">营养成分查询2</a><a href="https://www.dianping.com/" class="lik" target="_blank">大众点评</a></p>
+          <hr>
+          <h5><i class="fa fa-thumbs-o-up"></i>&nbsp;推荐</h5>
+          <p><a href="http://guozhivip.com/" class="lik" target="_blank">资源导航</a><a href="http://guozhivip.com/rank/" class="lik" target="_blank">实时热点</a><a href="http://guozhivip.com/tool/" class="lik" target="_blank">在线工具</a><a href="http://guozhivip.com/so/" class="lik" target="_blank">全能搜索</a><a href="http://guozhivip.com/lab/" class="lik" target="_blank">有点意思</a></p>
+      </div>
+    </div>
+  </div>
+</div> 
+<div class="logo"><img src="logo.png" style="background: none;" /></div>
+
+<div id="wrapper">
+  <h1 style="color:#FF9733" id="what"></h1>
+  <input type="button" value="开始" id="start" />
+  <p><span id="cfg" title="编辑候选菜单" ><i class="fa fa-pencil"></i>🌏自定义</span><a href="javascript:location.reload();" id="cx" style="display: none"><i class="fa fa-undo"></i>&nbsp;重选</a>&nbsp;&nbsp;<a href="#" class="more" data-toggle="modal" data-target="#mre"><i class="fa fa-plus"></i>🌟更多</a></p>
+</div>
+
+<div id="popbox-wrapper" style="display: none;">
+    <div id="popbox">
+        <h3>自定义临时菜单<br><small style="display:block;color: #666; font-size: 12px; font-weight: 100;margin-top: 3px;">- 菜名间要以空格区分 -</small></h3>
+        <textarea type="hidden" id="list" name="list" placeholder="在此输入菜单，各菜名间以空格分隔...">馄饨 烩面 热干面 刀削面 油泼面 炸酱面 炒面 重庆小面 米线 酸辣粉 土豆粉 螺狮粉 凉皮儿 麻辣烫 肉夹馍 羊肉泡馍 炒饭 盖浇饭 烤肉饭 黄焖鸡米饭 麻辣香锅 火锅 酸菜鱼 烤串 披萨 烤鸭 汉堡 炸鸡 寿司 煎饼果子 南瓜粥 小龙虾 牛排 砂锅 大排档 馒头 西餐 自助餐 小笼包 水果 西北风 烧烤 泡面 水饺 日本料理 涮羊肉 兰州拉面 肯德基 面包 臊子面 小笼包 麦当劳 沙县小吃 烤鱼 海鲜 铁板烧 韩国料理 甜点 鸭血粉丝汤 </textarea>
+        <input type="button" value="确定" id="ok" />
+    </div>
+</div>
+
+<footer>
+    <div class="copyright">
+        <p>推荐：<a href="http://guozhivip.com" target="_blank">果汁导航</a> - <a href="http://guozhivip.com/rank/" target="_blank">果汁排行榜</a> - <a href="http://guozhivip.com/tool/" target="_blank">果汁工具</a> - <a href="http://guozhivip.com/so/" target="_blank">果汁搜索</a></p>
+        <span class="cp">@21计科命运之光——其实我的梦想是拯救世界</span>
+    </div>
+</footer>
+
+<script type='text/javascript' src='jquery-1.11.1.min.js'></script>
+<script type='text/javascript' src='popper.min.js'></script>
+<script type='text/javascript' src='bootstrap.min.js'></script>
+<script>
+    $(function () {
+    var run = 0,
+        btn = $("#start"),
+        popup = $("#popbox-wrapper"),
+        li = $("#list"),
+        times = 0,
+        timer;
+
+    $("#start").click(function () {
+        var list = $("#list").val().replace(/ +/g, " ").replace(/^ | $/g, "").split(" ");
+        if (list.length == 1 && list[0] != "") return alert("耍我是吧，一个有什么好选的！");
+        if (list.length == 1) return alert("菜单中啥也没有，吃西北风去啊？");
+        if (!run) {   
+            $("#cfg").add(btn).one("click", function () {
+                $(".tip").animate({
+                    left: "+=10px",
+                    opacity: 0
+                }, function () {
+                    $(this).remove();
+                });
+            });
+            $(this).val("停止");
+            timer = setInterval(function () {
+                var r = Math.ceil(Math.random() * list.length),
+                    food = list[r - 1];
+                $("#what").html(food);
+                var rTop = Math.ceil(Math.random() * $(document).height()),
+                    rLeft = Math.ceil(Math.random() * ($(document).width() - 50)),
+                    rSize = Math.ceil(Math.random() * (37 - 14) + 14);
+                $("<span class='temp'></span>").html(food).hide().css({
+                    "top": rTop,
+                    "left": rLeft,
+                    "color": "rgba(0,0,0,." + Math.random() + ")",
+                    "fontSize": rSize + "px"
+                }).appendTo("body").fadeIn("slow", function () {
+                    $(this).fadeOut("slow", function () {
+                        $(this).remove();
+                    });
+                });
+            }, 50);
+            run = 1;
+        } else {
+            $(this).val("不行，换一个");
+            clearInterval(timer);
+            run = 0;
+        };
+    });
+    $("#cfg").click(function () {
+        run ? alert("还在选呢！") : popup.fadeIn(function () {
+            var t = li.val();
+            li.focus().val("").val(t)
+        });
+    });
+
+    $("#ok").click(function () {
+        popup.fadeOut();
+    });
+}); 
+
+    $i = 0;
+    $('#start').click(function(){
+        $i++;
+        if($i >=12 ){
+            $('#start').hide();
+            $('#what').html('这么挑？饿着吧！');
+            $('#cfg').hide();
+            $('#cx').show();
+        };
+    })
+
+        
+</script>
+<!--tm-->
+<script type="text/javascript">
+  window.onload = function(){
+    showTime();
+  }
+  function showTime(){
+    var now=new Date(); 
+    var year= now.getFullYear(); 
+    document.getElementById("show").innerHTML=""+year;
+    t=setTimeout('showTime()',1000)
+  }
+</script>
+
+<script type="text/javascript">
+  var h = $(window).height();
+  $(window).resize(function() {
+    if($(window).height()<h){
+      $('.copyright').css("display","none");
+    }else{
+      $('.copyright').css("display","block");
+    }
+  });
+</script>
+<!--pb-->
+<script>
+    document.oncontextmenu = function (event){
+    if(window.event){
+    event = window.event;
+    }try{
+    var the = event.srcElement;
+    if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+    return false;
+    }
+    return true;
+    }catch (e){
+    return false;
+    }
+    }
+</script>
+<script>
+    document.onkeydown = function(){
+
+    if(window.event && window.event.keyCode == 123) {
+        alert("Hi,欢迎来到果汁！");
+        event.keyCode=0;
+        event.returnValue=false;
+    }
+    if(window.event && window.event.keyCode == 13) {
+        window.event.keyCode = 505;
+    }
+    if(window.event && window.event.keyCode == 8) {
+        alert(str+"\n请使用Del键进行字符的删除操作！");
+        window.event.returnValue=false;
+    }
+    }
+</script>
+
+<script type="text/javascript">
+  	if (self == top) {
+	    var theBody = document.getElementsByTagName('body')[0];
+	    theBody.style.display = "block";
+	} else {
+	    top.location = self.location;
+	}
+</script>
+<!--tj-->
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?7c242ad25d63427a681f4ae84d4ffe19";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>
