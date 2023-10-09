@@ -241,6 +241,10 @@
 好看好用（穿梭）
 - 项目链接: [穿梭](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/HelloWorld/hello.html)
 
+### 今天吃啥
+好看好用（今天吃啥）
+- 项目链接: [今天吃啥](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/今天吃啥/今天吃啥.html)
+
 ### 进制转换器
 
 一个简单的进制转换器，手机上使用。
