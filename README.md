@@ -251,7 +251,11 @@
 
 - 项目链接: [进制转换器](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/1.html)
 
+### 个人名片展示
 
+个人名片展示。
+
+- 项目链接: [进制转换器](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/个人名片/个人简介.html)
 
 ## 贡献
 
