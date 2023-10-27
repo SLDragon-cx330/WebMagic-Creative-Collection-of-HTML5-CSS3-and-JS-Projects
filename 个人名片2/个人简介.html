@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命运之光~个人名片</title>
+    <style>
+
+body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('bk1.jpg'); /* 使用 bk1.jpg 作为背景图像 */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        #wrapper {
+            width: 590px; /* 设置容器宽度，可以根据需要调整 */
+            height: 960px; /* 设置容器高度，可以根据需要调整 */
+            background-size: 120% 110%;
+            background-position: -55px;
+            transform-origin: 0 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%); /* 将容器水平居中 */
+            margin-top: 550px; /* 增加上边距以垂直居中 */
+        }
+.range{
+  position: absolute;
+  width: 300px;
+  left: calc(50% - 150px);
+  bottom: 190px;
+  display: none;
+}
+.btn {
+  cursor: pointer;
+  position: absolute;
+  left: calc(50% - 50px);
+  bottom: 150px;
+  width: 100px;
+  height: 100px;
+  background: url(555.png)
+    no-repeat center/cover;
+ /* 其他样式 */
+  background: url(555.png) no-repeat center/cover;
+  opacity: 0.8; /* 添加这一行设置透明度为0.6 */
+}
+.btn::after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background: url(555.png)
+    no-repeat center/cover;
+  transform-origin: center;
+  transform: scale(1);
+  animation: scale 3s infinite;
+}
+@keyframes scale {
+  0% {
+    transform: scale(0.4);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+.btn::before {
+	font-size:14px;
+  text-align: center;
+	color:#ccc;
+	content:"人生苦短，一天当作两天卷";
+	height:20px;
+	width:180px;
+	background-color:#fff;
+	position:absolute;
+	left:-40px;
+  top: -30px;
+	border-radius:10px;
+	opacity:0;
+	transition:all .5s;
+}
+.btn:hover:before {
+	opacity:1;
+	transition:all 1s;
+}
+
+.card{
+  width: 300px;
+  height:300px;
+  perspective: 1000px;
+  margin: 200px auto;
+  opacity: 0;
+  transition: all 1s ease-in;
+}
+.cube{
+  width:100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform ease 1s;
+}
+.cube div{
+    border: 2px solid #5968be;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(255, 161, 161, 0.5);
+    background-size: 100% 100%;
+}
+
+.is_top {
+  background: red;
+  transform: rotateX(90deg) translateZ(150px);
+}
+.is_bottom {
+  background: blue;
+  transform: rotateX(-90deg) translateZ(150px);
+}
+.is_left {
+  background: green;
+  transform: rotateY(-90deg) translateZ(150px);
+}
+.is_right {
+  background: pink;
+  transform: rotateY(90deg) translateZ(150px);
+}
+.is_front {
+  background: yellow;
+  transform: translateZ(150px);
+}
+.is_back {
+  background: orange;
+  transform: rotateX(-180deg) translateZ(150px);
+}
+.title{
+  color: #fff;
+  font-size: 22px;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.title::before{
+  display: block;
+  position: absolute;
+  left:118px;
+  top: 50px;
+  content: '';
+  width: 70px;
+  height: 3px;
+  background-color: #fff;
+}
+.content{
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30px;
+  text-align:center;
+  font-size: 12px;
+  color: #eee;
+}
+.img{
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  background-size: 100% 100% !important;
+}
+.avater{
+  width: 150px;
+  height: 150px;
+  margin: 40px auto 10px;
+  border-radius: 50%;
+  display: block;
+  background:url(https://profile-avatar.csdnimg.cn/3f3aa636e8ac41aa898a8011395e06e8_vlokl.jpg!1);
+  background-size: 100%;
+  border: 5px solid #fff;
+}
+.username{
+  display: block;
+  text-align:center;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.hobby{
+ display: flex;
+  margin: 60px auto 0;
+  width: 200px;
+  height: 200px; 
+}
+.hobby img{
+  width: 50px;
+  height: 50px;
+}
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+<div class="btn"></div>
+<input class="range" type="range" min="0" max="5" step="1" value="0" oninput="change()" onchange="change()" />
+<div class="card">
+  <div class="cube show">
+    <div class="is_top">
+      <span class="avater"></span>
+      <span class="username">命运之光</span>
+      <span class="content">其实我的梦想是拯救世界</span>
+    </div>
+    <div class="is_bottom">
+      <span class="title">个人介绍</span>
+      <span class="content">你好，我是命运之光，一个热爱生活和技术的程序员。我喜欢挑战自己，不断学习新知识和技能。除了编程，我还喜欢旅行、阅读和尝试新鲜事物。我的座右铭是“活出自己想要的样子”，我相信只要我们敢于追求自己的梦想，就能够创造属于自己的精彩人生。
+
+
+      </span>
+    </div>
+    <div class="is_left">
+      <span class="title">最近在看(德芙)</span>
+      <span class="img" style="background:url(222.png)"></span>
+    </div>
+    <div class="is_right">
+      <span class="title">最近在玩（原神）</span>
+      <span class="img" style="background:url(https://img1.baidu.com/it/u=2692659307,1253870257&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=590)"></span>
+      
+    </div>
+    <div class="is_front">
+      <span class="title">兴趣爱好</span>
+      <span class="hobby">
+        <img src="https://pic.imgdb.cn/item/63c2d285be43e0d30eeb5146.png"  />
+        <img src="https://pic.imgdb.cn/item/63c2d285be43e0d30eeb513b.png"  />
+        <img src="https://pic.imgdb.cn/item/63c2d285be43e0d30eeb512d.png"  />
+        <img src="https://pic.imgdb.cn/item/63c2d285be43e0d30eeb5122.png"  />
+      </span>
+    </div>
+    <div class="is_back">
+      <span class="title">Hello World</span>
+      <span class="img" style="background:url(https://pic.imgdb.cn/item/63c2d710be43e0d30ef68b9c.gif)"></span>
+    </div>
+  </div>
+</div>
+</div>
+
+
+    <!-- JavaScript 代码 -->
+    <script>
+        ScreenAuto();
+window.onresize = () => ScreenAuto();
+function ScreenAuto() {
+  const scale = document.documentElement.clientHeight / 960;
+  document.querySelector(
+    "#wrapper"
+  ).style.transform = `scale(${scale}) translate(-50%)`;
+}
+let rotateList = [
+  "rotateX(-90deg)",
+  "rotateX(90deg)",
+  "rotateY(90deg)",
+  "rotateY(-90deg)",
+  "",
+  "rotateX(-180deg)",
+];
+let range = document.getElementsByClassName("range")[0];
+let show = document.getElementsByClassName("show")[0];
+let btn = document.getElementsByClassName("btn")[0];
+let card= document.getElementsByClassName("card")[0];
+btn.addEventListener('click',()=>{
+  btn.style.display = 'none'
+  range.style.display = 'block'
+  card.style.opacity = '1'
+  show.style.transform = rotateList[0];
+})
+function change() {
+  show.style.transform = rotateList[range.value];
+}
+
+    </script>
+</body>
+</html>
