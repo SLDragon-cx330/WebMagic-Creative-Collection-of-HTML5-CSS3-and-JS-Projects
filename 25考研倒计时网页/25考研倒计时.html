@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研倒计时</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* 保持文本颜色为白色 */
+  }
+  .countdown {
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.6); /* 更改为红色半透明背景色 */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* 调整为红色阴影效果 */
+    max-width: 600px; /* 最大宽度，保持在较大屏幕上的美观 */
+  }
+  #timer {
+    color: #FFD700; /* 调整时间数字的颜色为金色，以增加对比度 */
+  }
+  #timer span {
+   
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4); /* 更改时间背景色为深色 */
+    border-radius: 5px; /* 圆角边框 */
+    color: #FFD700; /* 使时间数字颜色为金色 */
+  }
+  .btn-transition {
+    display: inline-block;
+    background-color: #FF0000; /* 按钮背景颜色为红色 */
+    color: #FFFFFF; /* 文本颜色为白色 */
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 2px solid #000000; /* 黑色边框 */
+    cursor: pointer;
+    text-decoration: none; /* 去除下划线 */
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .btn-transition:hover {
+    background-color: #000000; /* 鼠标悬停时按钮背景变为黑色 */
+    color: #FF0000; /* 文本颜色变为红色 */
+  }
+</style>
+</head>
+<body>
+
+<div class="countdown">
+  <h1>距离25考研还剩</h1>
+  <div id="timer">
+    <span id="days"></span>天
+    <span id="hours"></span>小时
+    <span id="minutes"></span>分钟
+    <span id="seconds"></span>秒
+  </div>
+  <!-- 跳转按钮 -->
+  <a href="javascript:void(0);" class="btn-transition" onclick="navigateToJournal()">考研压力释放区</a>
+<a href="javascript:void(0);" class="btn-transition" onclick="navigateToJournal2()">其他功能敬请期待</a>
+</div>
+
+<script>
+function countdown() {
+  const countToDate = new Date('2024-12-24T00:00:00').getTime();
+  const now = new Date().getTime();
+  const difference = countToDate - now;
+
+  const seconds = 1000;
+  const minutes = seconds * 60;
+  const hours = minutes * 60;
+  const days = hours * 24;
+
+  let timeDays = Math.floor(difference / days);
+  let timeHours = Math.floor((difference % days) / hours);
+  let timeMinutes = Math.floor((difference % hours) / minutes);
+  let timeSeconds = Math.floor((difference % minutes) / seconds);
+
+  document.getElementById('days').innerText = timeDays;
+  document.getElementById('hours').innerText = timeHours;
+  document.getElementById('minutes').innerText = timeMinutes;
+  document.getElementById('seconds').innerText = timeSeconds;
+}
+
+// Update the countdown every 1 second
+setInterval(countdown, 1000);
+
+
+// 模拟跳转函数，实际跳转逻辑根据需要进行调整
+function navigateToJournal() {
+  // 例如，可以使用window.location.href = '考研评论区.html';来实现跳转到日志页面
+  window.location.href = '考研评论区.html';
+}
+
+// 模拟跳转函数，实际跳转逻辑根据需要进行调整
+function navigateToJournal2() {
+  // 例如，可以使用window.location.href = 'journal.html';来实现跳转到日志页面
+  console.log('跳转到考研日志界面');
+}
+</script>
+
+</body>
+</html>

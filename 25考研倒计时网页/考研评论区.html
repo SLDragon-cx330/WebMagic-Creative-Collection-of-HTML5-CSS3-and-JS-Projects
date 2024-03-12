@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研日志记录</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-image: url('2.jpg'); /* 添加背景图片 */
+    background-size: cover; /* 背景图片覆盖整个页面 */
+    background-position: center; /* 背景图片居中显示 */
+    color: #f00; /* 将文本颜色设置为白色 */
+  }
+  textarea {
+    width: 95%;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.6); /* 深色背景提高可读性 */
+    color: #fff; /* 文本颜色为白色 */
+    border: 2px solid #FF0000; /* 红色边框 */
+    padding: 10px;
+  }
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #FF0000; /* 按钮背景颜色为红色 */
+    color: #fff; /* 文本颜色为白色 */
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* 添加过渡效果 */
+  }
+  button:hover {
+    background-color: #C80000; /* 鼠标悬停时按钮变为深红色 */
+  }
+  .log-entry {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6); /* 日志背景为深色半透明 */
+    color: #fff; /* 日志文本颜色为白色 */
+    border-left: 5px solid #FF0000; /* 添加红色边框以强调 */
+    border-radius: 5px;
+  }
+
+
+/* 添加返回按钮的特定样式 */
+button#backToMenu {
+  display: block;
+  width: 200px; /* 设置按钮宽度 */
+  margin: 20px auto; /* 上下间距20px，自动水平居中 */
+  background-color: #000; /* 背景颜色为黑色 */
+  color: #FF0000; /* 文本颜色为红色 */
+  border: 2px solid #FF0000; /* 边框颜色为红色 */
+}
+
+button#backToMenu:hover {
+  background-color: #FF0000; /* 鼠标悬停时背景变为红色 */
+  color: #000; /* 文本颜色变为黑色 */
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>考研压力释放区</h2>
+
+<textarea id="logContent" placeholder="在这片无名之地，你的名号不被铭记。倾吐心底最深处，考研旅途中的重压与挣扎，将它们镌刻于此，永世长存。释放你内心的兽吼，让它飞向九霄云外！" required></textarea>
+<button onclick="saveLog()">保存日志</button>
+
+
+<div id="logEntries"></div>
+
+<button id="backToMenu" onclick="goBackToMainMenu()">返回主菜单</button>
+<script>
+  // 用于保存日志
+  function saveLog() {
+    const logContent = document.getElementById('logContent').value;
+    const currentTime = new Date().toLocaleString();
+    const logEntry = { time: currentTime, content: logContent };
+
+    // 将新日志添加到现有日志数组中
+    let logs = JSON.parse(localStorage.getItem('logs')) || [];
+    logs.push(logEntry);
+    localStorage.setItem('logs', JSON.stringify(logs));
+
+    // 清空textarea并重新加载日志
+    document.getElementById('logContent').value = '';
+    loadLogs();
+  }
+
+  // 用于加载并显示日志
+  function loadLogs() {
+    const logEntries = document.getElementById('logEntries');
+    logEntries.innerHTML = ''; // 清空当前显示
+
+    let logs = JSON.parse(localStorage.getItem('logs')) || [];
+    logs.forEach(log => {
+      const entryDiv = document.createElement('div');
+      entryDiv.classList.add('log-entry');
+      entryDiv.textContent = `${log.time}: ${log.content}`;
+      logEntries.appendChild(entryDiv);
+    });
+  }
+
+  // 在页面加载时加载日志
+  window.onload = loadLogs;
+
+
+function goBackToMainMenu() {
+  window.location.href = '25考研倒计时.html'; // 根据实际情况调整文件名
+}
+
+</script>
+
+</body>
+</html>
