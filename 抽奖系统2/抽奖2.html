@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抽奖系统</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #B5FFEA; /* 更轻柔的背景色 */
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 1px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+        max-width: 400px; /* 控制容器最大宽度 */
+        width: 90%;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+        background-color: #3498db; /* 更柔和的蓝色按钮 */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease; /* 添加过渡效果 */
+    }
+
+    button:disabled {
+        background-color: #cccccc; /* 禁用状态下的按钮颜色 */
+        cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
+        background-color: #FCF417; /* 按钮悬停颜色 */
+    }
+
+    #result {
+        font-size: 24px;
+        margin-top: 20px;
+    }
+
+    /* 初始状态下隐藏进度条 */
+    .progress-bar {
+        display: none;
+        width: 100%;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    .progress {
+        width: 0%;
+        height: 30px;
+        background-color: #FFB7F2; /* 绿色进度条 */
+        transition: width 2s ease-in-out;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>今天你快乐吗</h1>
+    <button id="startBtn">开始抽奖</button>
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+    <div id="result"></div>
+</div>
+
+<script>
+    const prizes = [
+        { name: '谢谢参与', probability: 0.3 }, // 30%的概率
+        { name: '恭喜你中奖了', probability: 0.01}, // 20%的概率
+        { name: '很可惜没有中奖', probability: 0.2 }, // 20%的概率
+        { name: '再接再厉', probability: 0.15 }, // 15%的概率
+        { name: '祝您好运', probability: 0.15 } // 15%的概率
+    ];
+
+    let hasClicked = localStorage.getItem('hasClicked') === 'true';
+
+    function getRandomPrize() {
+        const randomNumber = Math.random(); // 生成一个0到1之间的随机数
+        let cumulativeProbability = 0;
+
+        for (const prize of prizes) {
+            cumulativeProbability += prize.probability;
+            if (randomNumber <= cumulativeProbability) {
+                return prize.name; // 返回抽中的奖品
+            }
+        }
+
+        return '谢谢参与'; // 默认返回谢谢参与
+    }
+
+    document.getElementById('startBtn').addEventListener('click', function () {
+        if (!hasClicked) {
+            const progressBar = document.querySelector('.progress-bar');
+            const progress = document.querySelector('.progress');
+
+            progressBar.style.display = 'block'; // 显示进度条
+            hasClicked = true; // 点击后设置为已点击状态
+            localStorage.setItem('hasClicked', 'true'); // 使用本地存储记录已点击状态
+            this.disabled = true; // 禁用按钮
+
+            setTimeout(() => {
+                progress.style.width = '100%'; // 开始抽奖，进度条填满
+
+                setTimeout(() => {
+                    const resultElement = document.getElementById('result');
+                    const prize = getRandomPrize();
+                    resultElement.textContent = `抽奖结果：${prize}`;
+                    progress.style.width = '0%'; // 抽奖完成后，进度条重置
+                    progressBar.style.display = 'none'; // 隐藏进度条
+                    document.getElementById('startBtn').disabled = false; // 启用按钮
+                }, 2000); // 模拟抽奖过程需要2秒
+            }, 100); // 延迟显示进度条，避免立即消失的闪烁感觉
+        }
+    });
+
+    // 页面加载时检查是否已经抽过奖
+    window.onload = () => {
+        if (hasClicked) {
+            document.getElementById('startBtn').disabled = true; // 如果已经抽过奖，则禁用按钮
+        }
+    };
+</script>
+</body>
+</html>
