@@ -285,7 +285,7 @@
 
 个人名片展示。
 
-- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/抽奖系统/抽奖.html)
+- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/抽奖系统2/抽奖2.html)
 
 ## 贡献
 
