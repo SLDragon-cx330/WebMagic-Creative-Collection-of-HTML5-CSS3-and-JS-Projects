@@ -287,6 +287,13 @@
 
 - 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/抽奖系统2/抽奖2.html)
 
+### 个人名片展示（手机版改加了轮播图效果*6）
+
+个人名片展示。
+
+- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/用AI快速生成一个网页资料整理/用AI快速生成一个网页.html)
+
+- 
 ## 贡献
 
 如果你想为项目做出贡献，欢迎提出问题和提交请求！我们期待你的参与。
@@ -296,6 +303,8 @@
 如果你觉得这些项目有趣或有用，不妨给我一个 Star 来表示支持吧！你的 Star 是对我工作的肯定，也会帮助更多的人发现这些创意。
 
 感谢你的关注和支持！🌟
+
+
 
 
 ---
