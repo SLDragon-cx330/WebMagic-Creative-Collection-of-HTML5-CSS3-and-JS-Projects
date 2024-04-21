@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美少女网页制作</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #ffa7cc;
+            /* 粉色背景 */
+        }
+        
+        .nav-bg {
+            width: 1300px;
+            height: 60px;
+            background-color: #dc6395;
+            font-size: 24px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .nav-links a {
+            display: inline-block;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: orange;
+        }
+        
+        .header {
+            width: 1300px;
+            height: 700px;
+            margin: 0 auto;
+            background: url("header.png") center center no-repeat;
+            background-size: cover;
+            margin-bottom: 30px;
+        }
+        
+        .content_area {
+            width: 1300px;
+        }
+        
+        .layer {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .card {
+            width: 380px;
+            height: 500px;
+            margin: 30px;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
+        
+        .card_image {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+        }
+        
+        .main-container {
+            width: 1300px;
+            height: 300px;
+            background: url("region.png") no-repeat center center;
+            position: relative;
+        }
+        
+        .main-container.content {
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .footer {
+            width: 1300px;
+            height: 40px;
+            background-color: #D7719B;
+            text-align: center;
+            color: white;
+        }
+        
+        .content p:first-child {
+            margin-top: 0;
+        }
+        
+        .content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content p {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .content {
+            padding: 20px;
+            /* background-color: #fff; */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(67, 249, 39, 0.1);
+        }
+        
+        .main-container {
+            width: 100%;
+            /* margin: 100 auto; */
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="nav-bg">
+                <div class="nav-links">
+                    <a href="#">菜单 1</a>
+                    <a href="#">菜单 2</a>
+                    <a href="#">菜单 3</a>
+                    <a href="#">菜单 4</a>
+                    <a href="#">菜单 5</a>
+                </div>
+            </div>
+        </nav>
+        <div class="header"></div>
+
+        <div class="content_area">
+            <div class="layer">
+                <div class="card">
+                    <img src="01.gif" alt="Image 1" class="card_image">
+                    <h2 class="card_title">可爱小猫咪</h2>
+                    <p class="card_description">这是一只可爱的小猫咪，它有着软软的毛发和大大的眼睛。</p>
+                </div>
+                <div class="card">
+                    <img src="02.gif" alt="Image 2" class="card_image">
+                    <h2 class="card_title">粉色气球</h2>
+                    <p class="card_description">这是一束粉色的气球，漂浮在天空中，给人带来快乐和幸福的感觉。</p>
+                </div>
+                <div class="card">
+                    <img src="03.gif" alt="Image 3" class="card_image">
+                    <h2 class="card_title">甜甜蜜蜜</h2>
+                    <p class="card_description">这是一碗甜甜的草莓冰淇淋，每一口都充满了幸福和满足的味道。</p>
+                </div>
+            </div>
+            <div class="layer">
+                <div class="card">
+                    <img src="01.gif" alt="Image 1" class="card_image">
+                    <h2 class="card_title">花园漫步</h2>
+                    <p class="card_description">这是一个美丽的花园，漫步其中，可以闻到各种花香，感受到大自然的美好。</p>
+                </div>
+                <div class="card">
+                    <img src="02.gif" alt="Image 2" class="card_image">
+                    <h2 class="card_title">星空夜曲</h2>
+                    <p class="card_description">这是一片宁静的星空夜晚，星星点点，宛如闪烁的音符，谱写着美妙的夜曲。</p>
+                </div>
+                <div class="card">
+                    <img src="03.gif" alt="Image 3" class="card_image">
+                    <h2 class="card_title">糖果梦境</h2>
+                    <p class="card_description">这是一个梦幻般的糖果世界，糖果树上挂满了五彩缤纷的糖果，甜蜜的梦境令人陶醉。</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="main-container">
+            <div class="content">
+                <p>在春日的清晨，粉色的樱花在微风中轻轻摇曳，散发着淡淡的芬芳。阳光透过树叶的缝隙洒落在青翠的草地上，映衬着一群可爱的小动物在欢快地嬉戏。</p>
+                <p>远处传来了轻快的音乐声，一位少女身穿粉色的连衣裙，头戴花朵编织的花冠，手拿着一束粉色气球，轻盈地跳跃着，仿佛是从童话世界中走出来的精灵。</p>
+                <p>她的笑容灿烂而纯真，如同春日的阳光一般温暖人心。她的眼神明亮而澄澈，如同湖水一般清澈透明。她的声音轻柔而甜美，如同鸟儿在枝头轻轻歌唱。</p>
+                <p>在这个充满幸福和美好的世界里，每一个角落都充满了温馨和欢乐。让我们一起跟随着少女的脚步，走进这个美丽的梦境，感受到岁月静好的温暖。</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>©版权所有</p>
+        </div>
+
+    </div>
+
+    <script>
+    </script>
+</body>
+
+</html>
