@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浪漫七夕</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: #ff6f61;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .blessings {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        
+        .slideshow {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .slideshow img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+        
+        .messages {
+            margin: 20px 0;
+        }
+        
+        .messages textarea {
+            width: calc(100% - 20px);
+            height: 100px;
+            border-radius: 10px;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .messages button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .falling-roses {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .falling-roses img {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: fall 5s linear infinite;
+        }
+        
+        .music-control {
+            margin-top: 20px;
+        }
+        
+        .music-control button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>浪漫七夕</header>
+    <div class="container">
+        <div class="blessings">
+            <p>七夕节，愿你我心心相印，共度美好时光。</p>
+            <p>七夕快乐，愿我们的爱情像星星一样璀璨。</p>
+            <p>愿我们的爱情如同银河般浩瀚无垠，永不分离。</p>
+        </div>
+        <div class="slideshow">
+            <img src="car1.png" alt="浪漫图片1">
+            <img src="car2.png" alt="浪漫图片2">
+            <img src="car3.png" alt="浪漫图片3">
+        </div>
+        <div class="messages">
+            <textarea placeholder="在这里写下你的七夕祝福..."></textarea>
+            <button>发送祝福</button>
+        </div>
+        <div class="music-control">
+            <button onclick="toggleMusic()">播放/暂停音乐</button>
+        </div>
+    </div>
+    <div class="falling-roses">
+        <img src="car1.png" style="left: 10%; animation-delay: 0s;">
+        <img src="car2.png" style="left: 30%; animation-delay: 2s;">
+        <img src="car6.png" style="left: 50%; animation-delay: 4s;">
+        <img src="car4.png" style="left: 70%; animation-delay: 6s;">
+        <img src="car5.png" style="left: 90%; animation-delay: 8s;">
+    </div>
+    <audio id="background-music" loop>
+        <source src="romantic-music.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+    <script>
+        let musicPlaying = false;
+
+        function toggleMusic() {
+            const music = document.getElementById('background-music');
+            if (musicPlaying) {
+                music.pause();
+            } else {
+                music.play();
+            }
+            musicPlaying = !musicPlaying;
+        }
+    </script>
+</body>
+
+</html>
