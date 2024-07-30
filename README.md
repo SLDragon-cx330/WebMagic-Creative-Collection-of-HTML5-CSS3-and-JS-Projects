@@ -298,7 +298,7 @@
 
 个人名片展示。
 
-- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/用AI快速生成一个网页资料整理/用AI快速生成一个网页.html)
+- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/七夕代码/七夕代码.html)
 
 
 ## 贡献
