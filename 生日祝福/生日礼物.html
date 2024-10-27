@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给静香🍥生日礼物</title>
+    <link rel="icon" href="头像.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pacifico', cursive;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: #ff6f61;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .blessings {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        
+        .slideshow {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .slideshow img {
+            width: 45%;
+            height: auto;
+            border-radius: 15px;
+        }
+        
+        .messages {
+            margin: 20px 0;
+        }
+        
+        .messages textarea {
+            width: calc(100% - 20px);
+            height: 100px;
+            border-radius: 10px;
+            border: none;
+            padding: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .messages button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .falling-roses {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .falling-roses img {
+            position: absolute;
+            width: 50px;
+            animation: fall 5s linear infinite;
+        }
+        
+        .music-control {
+            margin-top: 20px;
+        }
+        
+        .music-control button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .messages {
+            flex: 1;
+        }
+        
+        .messages textarea {
+            width: 100%;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .video-container {
+            margin: 20px 0;
+        }
+        
+        .video-container video {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .egg-button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        /* 弹窗样式 */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            /* 初始透明度 */
+            transition: opacity 0.5s ease;
+            /* 过渡效果 */
+        }
+        
+        .modal-content {
+            background: url('happy.png') no-repeat center center;
+            background-size: cover;
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 400px;
+            margin: auto;
+            transform: translateY(-20px);
+            /* 初始位置 */
+            transition: transform 0.5s ease;
+            /* 过渡效果 */
+            color: #020202;
+            /* 弹窗字体颜色设置为白色 */
+        }
+        
+        .modal.show {
+            display: flex;
+            /* 显示弹窗 */
+            opacity: 1;
+            /* 变为不透明 */
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+            /* 位置恢复 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="头像.png" alt="加载" class="avatar"> 静香🍥生日快乐
+    </header>
+    <div class="container">
+        <div class="blessings">
+            <p>祝你前路浩浩荡荡，万事尽可期待。</p>
+            <p>祝你年年皆胜意，岁岁都欢愉。</p>
+        </div>
+
+        <div class="slideshow">
+            <img src="蛋糕.png" alt="蛋糕加载中...">
+        </div>
+        <div class="actions" style="display: flex; align-items: center;">
+            <div class="messages" style="flex: 4;">
+                <audio id="birthday-greeting" controls>
+                    <source src="音乐.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+        </div>
+
+        <button class="egg-button" style="flex: 6;" onclick="showBirthdayMessage()">这首歌价值百万哟🍥~别点我</button>
+        <div class="falling-roses">
+            <img src="听泉猫.png" style="left: 10%; animation-delay: 0s;">
+            <img src="听泉猫.png" style="left: 30%; animation-delay: 2s;">
+            <img src="听泉猫.png" style="left: 50%; animation-delay: 4s;">
+            <img src="听泉猫.png" style="left: 70%; animation-delay: 6s;">
+            <img src="听泉猫.png" style="left: 90%; animation-delay: 8s;">
+        </div>
+
+        <!-- 隐藏的视频元素 -->
+        <div class="video-container hidden" id="birthday-video">
+            <video controls onended="showModal()">
+                <source src="视频.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+        </div>
+
+        <!-- 弹窗 -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <h2>祝你生日快乐！</h2>
+                <h2>愿你未来每一天都充满快乐与幸福！
+                </h2>
+                <!-- <button onclick="closeModal()">关闭</button> -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let musicPlaying = false;
+
+        function toggleMusic() {
+            const music = document.getElementById('background-music');
+            if (musicPlaying) {
+                music.pause();
+            } else {
+                music.play();
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        function showBirthdayMessage() {
+            const videoContainer = document.getElementById('birthday-video');
+            videoContainer.classList.toggle('hidden');
+        }
+
+        function showModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('show'); // 添加显示类
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('show'); // 移除显示类
+        }
+    </script>
+</body>
+
+</html>
