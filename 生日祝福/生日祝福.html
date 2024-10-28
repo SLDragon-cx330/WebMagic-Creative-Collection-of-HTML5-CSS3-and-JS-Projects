@@ -1,322 +1,313 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
+
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Your+Chosen+Font&display=swap" rel="stylesheet">
-    <title>下雪背景效果和生日祝福</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给静香🍥生日礼物</title>
+    <link rel="icon" href="头像.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
-            overflow: hidden;
+            font-family: 'Pacifico', cursive;
             margin: 0;
             padding: 0;
+            background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+            color: #fff;
             text-align: center;
-            background-color: #f2f2f2;
-            font-family: 'Your Chosen Font', cursive;
-            animation: backgroundAnimation 5s infinite;
+            overflow-x: hidden;
         }
-
-        #snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+        
+        header {
+            background: #ff6f61;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        .snowflake {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #fff;
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            opacity: 0.8;
-            pointer-events: none;
-            animation: snowfall linear infinite;
+            margin-right: 10px;
         }
-
-        @keyframes snowfall {
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .blessings {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        
+        .slideshow {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .slideshow img {
+            width: 45%;
+            height: auto;
+            border-radius: 15px;
+        }
+        
+        .messages {
+            margin: 20px 0;
+        }
+        
+        .messages textarea {
+            width: calc(100% - 20px);
+            height: 100px;
+            border-radius: 10px;
+            border: none;
+            padding: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .messages button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        @keyframes fall {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(-100px);
             }
             100% {
                 transform: translateY(100vh);
             }
         }
-
-        #slideshow {
-            width: 500px;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto; /* 添加这行代码使其居中 */
+        
+        .falling-roses {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
         }
-
-        #slideshow img {
-            max-width: 100%;
-            max-height: 100%;
+        
+        .falling-roses img {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* 居中对齐 */
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+            width: 50px;
+            animation: fall 5s linear infinite;
         }
-
-        #slideshow img.active {
-            opacity: 1;
-        }
-
-        @keyframes backgroundAnimation {
-            0% {
-                background-color: #ffafbd;
-            }
-            50% {
-                background-color: #ffc3a0;
-            }
-            100% {
-                background-color: #ffa0bd;
-            }
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px; /* 调整生日快乐标题和下面文字的间距 */
-        }
-
-        h1 {
-            color: #ff69b4;
-            font-size: 28px;
-            margin-bottom: 10px; /* 调整标题和图片之间的间距 */
-        }
-
-        img {
-            width: 200px;
-            border-radius: 50%;
-            margin: 1px 0px; /* 调整图片和下方文字之间的间距 */
-        }
-
-        p {
-            color: #333;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeInAnimation 2s forwards;
-        }
-
-        @keyframes fadeInAnimation {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        #countdown {
-            display: flex;
-            justify-content: center;
+        
+        .music-control {
             margin-top: 20px;
         }
-
-        .time {
-            font-size: 36px;
-            margin: 0 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            animation-fill-mode: forwards;
+        
+        .music-control button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
-
-        #days {
-            background-color: #f5f5f5;
+        
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
         }
-
-        #hours {
-            background-color: #e0e0e0;
+        
+        .messages {
+            flex: 1;
         }
-
-        #minutes {
-            background-color: #d5d5d5;
+        
+        .messages textarea {
+            width: 100%;
         }
-
-        #seconds {
-            background-color: #cccccc;
+        
+        .hidden {
+            display: none;
         }
-
-        .time span {
-            display: inline-block;
-            font-size: 14px;
-            margin-top: 5px;
-            color: #333;
+        
+        .video-container {
+            margin: 20px 0;
         }
-
-        .ribbon {
-            position: absolute;
+        
+        .egg-button {
+            background: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        /* 弹窗样式 */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            overflow: hidden;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            /* 初始透明度 */
+            transition: opacity 0.5s ease;
+            /* 过渡效果 */
         }
-
-        .ribbon:before,
-        .ribbon:after {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(to bottom, #ff69b4, #ffc3a0, #ffafbd);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: ribbonAnimation 2s infinite;
+        
+        .modal-content {
+            background: url('happy.png') no-repeat center center;
+            background-size: cover;
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 400px;
+            margin: auto;
+            transform: translateY(-20px);
+            /* 初始位置 */
+            transition: transform 0.5s ease;
+            /* 过渡效果 */
+            color: #020202;
+            /* 弹窗字体颜色设置为白色 */
         }
-
-        .ribbon:before {
-            top: -100px;
-            left: -50px;
+        
+        .modal.show {
+            display: flex;
+            /* 显示弹窗 */
+            opacity: 1;
+            /* 变为不透明 */
         }
-
-        .ribbon:after {
-            top: -100px;
-            right: -50px;
-        }
-
-        /* 定义彩带动画 */
-        @keyframes ribbonAnimation {
-            0% {
-                transform: translate(0, 0) rotate(0);
-            }
-            100% {
-                transform: translate(-800px, -800px) rotate(360deg);
-            }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+            /* 位置恢复 */
         }
     </style>
 </head>
+
 <body>
-<div id="snow-container"></div>
+    <header>
+        <img src="头像.png" alt="加载" class="avatar"> 静香🍥生日快乐
+    </header>
+    <div class="container">
+        <div class="blessings">
+            <p>祝你前路浩浩荡荡，万事尽可期待。</p>
+            <p>祝你年年皆胜意，岁岁都欢愉。</p>
+        </div>
 
-<div class="fade-in">
-    <h1>Welcome to the world of Fate's Light</h1>
-    <p>After reading, remember to like, collect, and review. Hahaha.</p>
-</div>
+        <div class="slideshow">
+            <img src="蛋糕.png" alt="蛋糕加载中...">
+        </div>
+        <div class="actions" style="display: flex; align-items: center;">
+            <div class="messages" style="flex: 4;">
+                <audio id="birthday-greeting" controls>
+                    <source src="音乐.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+        </div>
 
-<div class="container">
-    <h1>生日快乐！</h1>
-    <div id="slideshow">
-        <img src="1.jpg" alt="Image 1" class="active">
-        <img src="2.png" alt="Image 2">
-        <img src="3.png" alt="Image 3">
+        <button class="egg-button" style="flex: 6;" onclick="showBirthdayMessage()">这首歌价值百万哟🍥~别点我</button>
+        <div class="falling-roses">
+            <img src="听泉猫.png" style="left: 10%; animation-delay: 0s;">
+            <img src="听泉猫.png" style="left: 30%; animation-delay: 2s;">
+            <img src="听泉猫.png" style="left: 50%; animation-delay: 4s;">
+            <img src="听泉猫.png" style="left: 70%; animation-delay: 6s;">
+            <img src="听泉猫.png" style="left: 90%; animation-delay: 8s;">
+        </div>
+
+        <!-- 隐藏的视频元素 -->
+        <!-- 隐藏的视频元素 -->
+        <div class="video-container hidden" id="birthday-video">
+            <iframe id="birthday-video-frame" src="https://player.bilibili.com/player.html?bvid=BV17j1GYSE62&t=0.4" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+            <button class="egg-button" onclick="showModal()">祝福卡</button>
+            <!-- 添加的祝福卡按钮 -->
+        </div>
+
+        <!-- 弹窗 -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <h2>祝你生日快乐！</h2>
+                <h2>愿你未来每一天都充满快乐与幸福！</h2>
+                <button onclick="closeModal()">关闭</button>
+                <!-- 添加关闭按钮 -->
+            </div>
+        </div>
+
     </div>
-    <p>亲爱的命运之光，</p>
-    <p>祝你生日快乐！愿你的生日充满欢乐、幸福和美好的回忆。</p>
-    <p>在这特殊的日子里，我希望你能享受每一刻，并和亲朋好友一起度过一个美好的时光。</p>
-    <p>再次祝你生日快乐！</p>
-</div>
 
-<div id="countdown">
-    <div class="time" id="days"></div>
-    <div class="time" id="hours"></div>
-    <div class="time" id="minutes"></div>
-    <div class="time" id="seconds"></div>
-</div>
+    <script>
+        let musicPlaying = false;
+        let videoEnded = false;
 
-<script>
-    // 设置生日日期（月从0开始计数）
-    const birthday = new Date("2023-07-11");
-
-    function updateCountdown() {
-        const now = new Date();
-        const difference = birthday - now;
-
-        // 计算剩余的天数、小时数、分钟数和秒数
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((difference / 1000 / 60) % 60);
-        const seconds = Math.floor((difference / 1000) % 60);
-
-        // 更新倒计时显示
-        document.getElementById("days").textContent = days.toString().padStart(2, "0") + "天";
-        document.getElementById("hours").textContent = hours.toString().padStart(2, "0") + "小时";
-        document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0") + "分钟";
-        document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0") + "秒";
-    }
-
-    // 每秒更新一次倒计时
-    setInterval(updateCountdown, 1000);
-</script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        var currentIndex = 0;
-        var slides = $('#slideshow img');
-        var slideCount = slides.length;
-
-        function showSlide(index) {
-            slides.removeClass('active');
-            slides.eq(index).addClass('active');
+        function toggleMusic() {
+            const music = document.getElementById('birthday-greeting');
+            if (musicPlaying) {
+                music.pause();
+            } else {
+                music.play();
+            }
+            musicPlaying = !musicPlaying;
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slideCount;
-            showSlide(currentIndex);
+        function showBirthdayMessage() {
+            const videoContainer = document.getElementById('birthday-video');
+            videoContainer.classList.toggle('hidden');
+
+            if (!videoEnded) {
+                checkVideoEnded();
+            }
         }
 
-        // 自动播放幻灯片
-        setInterval(nextSlide, 3000);
+        function checkVideoEnded() {
+            const iframe = document.getElementById('birthday-video-frame');
+            const videoId = "BV17j1GYSE62";
 
-        // 初始化显示第一张幻灯片
-        showSlide(currentIndex);
-    });
-</script>
-<script>
-    function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.style.left = Math.random() * window.innerWidth + 'px';
-        snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
-        snowflake.style.opacity = Math.random();
-        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-
-        const randomColor = getRandomColor();
-        snowflake.style.backgroundColor = randomColor;
-
-        snowflake.innerHTML = '生日快乐❤️'; // You can customize the snowflake symbol here
-
-        return snowflake;
-    }
-
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+            const interval = setInterval(() => {
+                fetch(`https://api.bilibili.com/x/web-interface/view?bvid=${videoId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.code === 0) {
+                            const duration = data.data.duration; // 视频总时长
+                            const currentTime = iframe.contentWindow.document.querySelector('video').currentTime; // 当前播放时间
+                            if (currentTime >= duration) {
+                                clearInterval(interval);
+                                videoEnded = true;
+                                showModal();
+                            }
+                        }
+                    });
+            }, 1000);
         }
-        return color;
-    }
 
-    function snowfall() {
-        const snowContainer = document.getElementById('snow-container');
-        const numSnowflakes = 50; // Adjust the number of snowflakes here
-
-        for (let i = 0; i < numSnowflakes; i++) {
-            const snowflake = createSnowflake();
-            snowContainer.appendChild(snowflake);
+        function showModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('show'); // 添加显示类
         }
-    }
 
-    snowfall();
-</script>
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('show'); // 移除显示类
+        }
+    </script>
 </body>
+
 </html>
