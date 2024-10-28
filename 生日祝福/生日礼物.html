@@ -144,11 +144,6 @@
             margin: 20px 0;
         }
         
-        .video-container video {
-            width: 100%;
-            border-radius: 10px;
-        }
-        
         .egg-button {
             background: #ff6f61;
             border: none;
@@ -241,28 +236,24 @@
 
         <!-- 隐藏的视频元素 -->
         <div class="video-container hidden" id="birthday-video">
-            <video controls onended="showModal()">
-                <source src="视频.mp4" type="video/mp4">
-                您的浏览器不支持视频播放。
-            </video>
+            <iframe id="birthday-video-frame" src="https://player.bilibili.com/player.html?bvid=BV17j1GYSE62&t=0.4" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
         </div>
 
         <!-- 弹窗 -->
         <div class="modal" id="modal">
             <div class="modal-content">
                 <h2>祝你生日快乐！</h2>
-                <h2>愿你未来每一天都充满快乐与幸福！
-                </h2>
-                <!-- <button onclick="closeModal()">关闭</button> -->
+                <h2>愿你未来每一天都充满快乐与幸福！</h2>
             </div>
         </div>
     </div>
 
     <script>
         let musicPlaying = false;
+        let videoEnded = false;
 
         function toggleMusic() {
-            const music = document.getElementById('background-music');
+            const music = document.getElementById('birthday-greeting');
             if (musicPlaying) {
                 music.pause();
             } else {
@@ -274,6 +265,31 @@
         function showBirthdayMessage() {
             const videoContainer = document.getElementById('birthday-video');
             videoContainer.classList.toggle('hidden');
+
+            if (!videoEnded) {
+                checkVideoEnded();
+            }
+        }
+
+        function checkVideoEnded() {
+            const iframe = document.getElementById('birthday-video-frame');
+            const videoId = "BV17j1GYSE62";
+
+            const interval = setInterval(() => {
+                fetch(`https://api.bilibili.com/x/web-interface/view?bvid=${videoId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.code === 0) {
+                            const duration = data.data.duration; // 视频总时长
+                            const currentTime = iframe.contentWindow.document.querySelector('video').currentTime; // 当前播放时间
+                            if (currentTime >= duration) {
+                                clearInterval(interval);
+                                videoEnded = true;
+                                showModal();
+                            }
+                        }
+                    });
+            }, 1000);
         }
 
         function showModal() {
