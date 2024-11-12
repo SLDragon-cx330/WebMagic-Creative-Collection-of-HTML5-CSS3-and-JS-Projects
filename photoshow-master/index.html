@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>永夜星河</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: url('bk.png') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            user-select: none;
+        }
+        
+        #perspective {
+            perspective: 800px;
+        }
+        
+        #wrap {
+            position: relative;
+            width: 150px;
+            height: 178px;
+            margin: 200px auto;
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(0deg);
+        }
+        
+        #wrap .image-block {
+            position: absolute;
+            transform: rotateY(0deg);
+        }
+        
+        #wrap .image-block img {
+            width: 150px;
+            height: 178px;
+        }
+        
+        .pic {
+            border: 2px solid #fff;
+            padding: 5px;
+            box-shadow: 0px 0px 8px 2px #fdfdfd;
+        }
+        
+        .reflection {
+            position: relative;
+            padding-left: 8px;
+        }
+        
+        .reflection img {
+            transform: scaleY(-1);
+            opacity: 0.50;
+        }
+        
+        .reflection .overlay {
+            position: absolute;
+            top: 0px;
+            left: 8px;
+            width: 150px;
+            height: 178px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 75%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="perspective">
+        <div id="wrap">
+
+            <div class="image-block">
+                <img class="pic" src="img/1.jpg" />
+                <div class="reflection">
+                    <img src="img/1.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/2.jpg" />
+                <div class="reflection">
+                    <img src="img/2.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/3.jpg" />
+                <div class="reflection">
+                    <img src="img/3.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/4.jpg" />
+                <div class="reflection">
+                    <img src="img/4.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/5.jpg" />
+                <div class="reflection">
+                    <img src="img/5.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/6.jpg" />
+                <div class="reflection">
+                    <img src="img/6.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/14.jpg" />
+                <div class="reflection">
+                    <img src="img/14.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/8.jpg" />
+                <div class="reflection">
+                    <img src="img/8.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/9.jpg" />
+                <div class="reflection">
+                    <img src="img/9.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/10.jpg" />
+                <div class="reflection">
+                    <img src="img/10.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/11.jpg" />
+                <div class="reflection">
+                    <img src="img/11.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="image-block">
+                <img class="pic" src="img/12.jpg" />
+                <div class="reflection">
+                    <img src="img/12.jpg" />
+                    <div class="overlay"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        /*功能一：
+                                                                                                                                                                                                                                                                                                                                                                所有的图片撑开成一个圆
+                                                                                                                                                                                                                                                                                                                                                                1.所有图片旋转一定的度数
+                                                                                                                                                                                                                                                                                                                                                                0*deg   1*deg   2*deg
+                                                                                                                                                                                                                                                                                                                                                                2.便利所有图片，并动态绑定一个度数值
+
+                                                                                                                                                                                                                                                                                                                                                              功能二：
+                                                                                                                                                                                                                                                                                                                                                                拖拽
+                                                                                                                                                                                                                                                                                                                                                                1.按下  移动  松开
+                                                                                                                                                                                                                                                                                                                                                                相册移动的位置  鼠标移动的位置
+
+                                                                                                                                                                                                                                                                                                                                                                相册移动的距离：
+                                                                                                                                                                                                                                                                                                                                                                坐标差 = 现在的坐标 - 以前的坐标
+
+                                                                                                                                                                                                                                                                                                                                                                算出相册的总度数  累加上差值
+                                                                                                                                                                                                                                                                                                                                                             */
+        window.onload = function() { //页面加载完毕再执行
+            var oImg = document.getElementsByClassName("image-block");
+            var deg = 360 / 12; //旋转的单位度数
+
+            var nowX, nowY, lastX, lastY, minsX, minsY, roX = -20,
+                roY = 0;
+
+            Array.prototype.forEach.call(oImg, function(el, index) {
+                el.style.transform = "rotateY(" + index * deg + "deg) translateZ(400px)";
+                el.style.transition = "1s " + (12 - index) * 0.05 + "s"
+            });
+
+            document.onmousedown = function(e) {
+                //            点击
+                var e = e || window.event;
+                /*兼容IE 与 火狐*/
+                lastX = e.clientX;
+                lastY = e.clientY;
+                this.onmousemove = function(e) {
+                    //               移动
+                    var e = e || window.event;
+
+                    //                现在的值
+                    nowX = e.clientX;
+                    nowY = e.clientY;
+
+                    //                即将要做的事情
+                    //                坐标差
+                    minsX = nowX - lastX;
+                    minsY = nowY - lastY;
+
+                    //                旋转的总度数的值
+                    roX -= minsY * 0.2;
+                    roY += minsX * 0.2;
+
+                    //id获取的元素可以直接通过元素Id去获取  可以不需要通过document.getElementById();
+                    wrap.style.transform = "rotateX(" + roX + "deg) rotateY(" + roY + "deg)"
+
+                    //                用完的值
+                    lastX = nowX;
+                    lastY = nowY;
+
+                }
+                this.onmouseup = function(e) {
+                    this.onmousemove = null;
+                    this.onmouseup = null;
+                }
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
