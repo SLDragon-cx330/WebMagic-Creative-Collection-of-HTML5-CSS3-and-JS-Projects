@@ -320,7 +320,11 @@
 
 - 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/生日祝福/生日祝福.html)
 
+### 个人名片展示（手机版改加了轮播图效果*6）
 
+个人名片展示。
+
+- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/photoshow-master/index.html)
 
 
 ## 贡献
