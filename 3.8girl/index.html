@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>女神节快乐</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+    theme: {
+    extend: {
+    colors: {
+    primary: '#FFB6C1',
+    secondary: '#E6E6FA'
+    },
+    borderRadius: {
+    'none': '0px',
+    'sm': '2px',
+    DEFAULT: '4px',
+    'md': '8px',
+    'lg': '12px',
+    'xl': '16px',
+    '2xl': '20px',
+    '3xl': '24px',
+    'full': '9999px',
+    'button': '4px'
+    }
+    }
+    }
+    }
+    </script>
+    <style>
+    body { background-color: #FFF5F7; }
+    .flower-container { perspective: 1000px; }
+    .petal { transform-origin: bottom center; }
+    @keyframes bloom {
+    from { transform: rotateX(90deg); }
+    to { transform: rotateX(0deg); }
+    }
+    .bloom-animation { animation: bloom 2s ease-out forwards; }
+    </style>
+</head>
+<body class="min-h-[762px] mx-auto relative">
+    <nav class="fixed top-0 w-full bg-primary shadow-md z-50 px-4 py-3 flex justify-between items-center">
+        <div class="text-white font-['Pacifico'] text-xl">女神节快乐</div>
+        <button class="text-white"><i class="fas fa-share-alt text-lg w-6 h-6 flex items-center justify-center"></i></button>
+    </nav>
+
+    <main class="pt-16 pb-20">
+        <div class="flower-container h-[300px] relative flex items-center justify-center mb-6">
+            <img src="https://ai-public.mastergo.com/ai/img_res/8df20bafc9002f4fa6c6633d469defa7.jpg"
+                class="w-[300px] h-[300px] object-contain bloom-animation" alt="花朵">
+        </div>
+        
+        <div class="px-4 space-y-6">
+            <div class="text-center space-y-2">
+                <h1 class="text-2xl font-medium text-gray-800">女神节快乐</h1>
+                <p class="text-gray-600">愿你如花绽放，美丽动人</p>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 shadow-sm space-y-4">
+                <div class="flex items-center space-x-3 mb-3">
+                    <i class="fas fa-palette text-primary w-5 h-5 flex items-center justify-center"></i>
+                    <span class="text-gray-700">选择花型</span>
+                </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <button class="aspect-square rounded-lg bg-secondary flex items-center justify-center">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/d61c25b04163b0bc66c1dbc7fdd37a55.jpg"
+                            class="w-full h-full object-cover rounded-lg" alt="玫瑰">
+                    </button>
+                    <button class="aspect-square rounded-lg bg-secondary flex items-center justify-center">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/68020281f349cf415e20da3de2b25b86.jpg"
+                            class="w-full h-full object-cover rounded-lg" alt="百合">
+                    </button>
+                    <button class="aspect-square rounded-lg bg-secondary flex items-center justify-center">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/d734afd2e1be73c3880643dbc626d4b9.jpg"
+                            class="w-full h-full object-cover rounded-lg" alt="郁金香">
+                    </button>
+                    <button class="aspect-square rounded-lg bg-secondary flex items-center justify-center">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/8237e27bff46892273ddc343ffdf3700.jpg"
+                            class="w-full h-full object-cover rounded-lg" alt="雏菊">
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex items-center space-x-3 mb-4">
+                    <i class="fas fa-gift text-primary w-5 h-5 flex items-center justify-center"></i>
+                    <span class="text-gray-700">抽奖区</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-secondary rounded-lg p-3">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/2ce60108964677239101159e4e1ad3cc.jpg" 
+                            class="w-full h-20 object-cover rounded-lg mb-2" alt="一日游">
+                        <div class="text-sm font-medium text-gray-800 mb-2">和小geigei一日游体验</div>
+                        <div class="text-xs text-gray-500">价值：¥399</div>
+                    </div>
+                    <div class="bg-secondary rounded-lg p-3">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/27693819c7342f509dff06f820e437ee.jpg" 
+                            class="w-full h-20 object-cover rounded-lg mb-2" alt="游泳">
+                        <div class="text-sm font-medium text-gray-800 mb-2">和小geigei游泳体验卡</div>
+                        <div class="text-xs text-gray-500">价值：¥199</div>
+                    </div>
+                    <div class="bg-secondary rounded-lg p-3">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/307c83fcaa1713deeb4e9201445c2363.jpg" 
+                            class="w-full h-20 object-cover rounded-lg mb-2" alt="红包">
+                        <div class="text-sm font-medium text-gray-800 mb-2">1.66元红包</div>
+                        <div class="text-xs text-gray-500">价值：¥1.66</div>
+                    </div>
+                    <div class="bg-secondary rounded-lg p-3">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/af93e97569242011d1e0a3e75096b7ad.jpg" 
+                            class="w-full h-20 object-cover rounded-lg mb-2" alt="礼品套装">
+                        <div class="text-sm font-medium text-gray-800 mb-2">精美礼品套装</div>
+                        <div class="text-xs text-gray-500">价值：¥88</div>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-500 text-center mb-3">今日剩余抽奖次数：3 次</div>
+                <button class="w-full py-3 bg-primary text-white font-medium rounded-button">立即抽奖</button>
+            </div>
+
+            <div class="mt-6 bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex items-center space-x-3 mb-4">
+                    <i class="fas fa-list text-primary w-5 h-5 flex items-center justify-center"></i>
+                    <span class="text-gray-700">我的奖品</span>
+                </div>
+                <div class="space-y-3">
+                    <!-- 奖品列表将通过JavaScript动态更新 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-100 px-6 py-2">
+        <div class="grid grid-cols-3 gap-4">
+            <button class="flex flex-col items-center space-y-1">
+                <i class="fas fa-home text-primary w-6 h-6 flex items-center justify-center"></i>
+                <span class="text-xs text-gray-600">首页</span>
+            </button>
+            <button class="flex flex-col items-center space-y-1">
+                <i class="fas fa-gift w-6 h-6 flex items-center justify-center"></i>
+                <span class="text-xs text-gray-600">抽奖</span>
+            </button>
+            <button class="flex flex-col items-center space-y-1">
+                <i class="fas fa-user w-6 h-6 flex items-center justify-center"></i>
+                <span class="text-xs text-gray-600">我的</span>
+            </button>
+        </div>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html> 
