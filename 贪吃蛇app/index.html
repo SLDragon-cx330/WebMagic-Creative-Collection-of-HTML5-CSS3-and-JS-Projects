@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗黑贪吃蛇</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#15B8A6'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .game-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .score {
+            text-shadow: 0 0 10px #ff0000;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        .control-pad {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            touch-action: none;
+            width: 120px;
+            height: 120px;
+        }
+        .skill-button {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .skill-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            }
+            to {
+                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            }
+        }
+        #leaderboard-modal, #sponsor-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+        .skill-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        #game-content {
+            display: none; /* 初始隐藏游戏内容 */
+        }
+        
+        .username-input-error {
+            color: #ff4444;
+            font-size: 0.9rem;
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-content" class="game-container mx-auto relative">
+        <div class="fixed top-0 w-full bg-secondary p-4 flex justify-between items-center z-50">
+            <div class="score text-2xl font-bold text-primary">分数: 0</div>
+            <div class="flex gap-2">
+                <button id="leaderboardBtn" class="skill-button !rounded-button px-4 h-10 flex items-center justify-center text-primary">
+                    排行榜
+                </button>
+                <button id="sponsorBtn" class="skill-button !rounded-button px-4 h-10 flex items-center justify-center text-primary">
+                    <i class="fas fa-heart mr-1"></i>
+                    赞助
+                </button>
+            </div>
+        </div>
+        <div class="mt-20 p-4">
+            <div class="bg-secondary rounded-lg p-4 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-primary">生命值</span>
+                    <div class="w-48 h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div id="healthBar" class="w-full h-full bg-primary"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="game-board relative w-full h-96 bg-[#2a2a2a] rounded-lg overflow-hidden mb-4">
+                <canvas id="gameCanvas" class="w-full h-full"></canvas>
+            </div>
+            <!-- 控制区域 -->
+            <div class="control-pad rounded-full flex items-center justify-center">
+                <i class="fas fa-gamepad text-primary text-3xl"></i>
+            </div>
+            <!-- 技能区域 -->
+            <div class="skill-container grid grid-cols-2 gap-4">
+                <div class="flex flex-col items-center">
+                    <button data-skill="speedBoost" class="skill-button !rounded-button w-16 h-16 flex flex-col items-center justify-center">
+                        <i class="fas fa-bolt text-primary text-2xl"></i>
+                        <span class="text-xs text-primary mt-1">加速</span>
+                    </button>
+                </div>
+                <div class="flex flex-col items-center">
+                    <button data-skill="invincible" class="skill-button !rounded-button w-16 h-16 flex flex-col items-center justify-center">
+                        <i class="fas fa-shield-alt text-primary text-2xl"></i>
+                        <span class="text-xs text-primary mt-1">无敌</span>
+                    </button>
+                </div>
+                <div class="flex flex-col items-center">
+                    <button data-skill="magnetFood" class="skill-button !rounded-button w-16 h-16 flex flex-col items-center justify-center">
+                        <i class="fas fa-fire text-primary text-2xl"></i>
+                        <span class="text-xs text-primary mt-1">吸去食物</span>
+                    </button>
+                </div>
+                <div class="flex flex-col items-center">
+                    <button data-skill="clone" class="skill-button !rounded-button w-16 h-16 flex flex-col items-center justify-center">
+                        <i class="fas fa-skull text-primary text-2xl"></i>
+                        <span class="text-xs text-primary mt-1">分身</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户名设置模态框 -->
+    <div id="username-modal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[1000] flex items-center justify-center">
+        <div class="bg-[#2a2a2a] p-8 rounded-lg text-center w-[90%] max-w-md">
+            <h2 class="text-3xl text-primary mb-6">欢迎来到暗黑贪吃蛇</h2>
+            <p class="text-gray-400 mb-6">请输入你的名字开始游戏</p>
+            <input type="text" id="username-input" class="w-full px-4 py-3 bg-[#1a1a1a] border-2 border-primary rounded-lg text-white text-xl mb-2 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="输入你的名字" maxlength="20">
+            <div id="username-error" class="username-input-error">请输入2-20个字符的名字</div>
+            <button id="start-game" class="skill-button !rounded-button px-8 py-4 text-xl w-full">
+                开始游戏
+            </button>
+        </div>
+    </div>
+
+    <!-- 游戏结束模态框 -->
+    <div id="gameOver-modal" style="display: none;" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[1000] flex items-center justify-center">
+        <div class="bg-[#2a2a2a] p-8 rounded-lg text-center w-[90%] max-w-md">
+            <h2 class="text-3xl text-primary mb-4">游戏结束</h2>
+            <p class="text-2xl text-white mb-2">玩家: <span id="player-name" class="text-primary"></span></p>
+            <p class="text-2xl text-white mb-6">得分: <span id="finalScore" class="text-primary">0</span></p>
+            <button id="restartBtn" class="skill-button !rounded-button px-8 py-4 text-xl w-full mb-4">
+                重新开始
+            </button>
+            <button id="showLeaderboardBtn" class="skill-button !rounded-button px-8 py-4 text-xl w-full">
+                查看排行榜
+            </button>
+        </div>
+    </div>
+
+    <!-- 排行榜模态框 -->
+    <div id="leaderboard-modal" style="display: none;">
+        <div class="modal-content w-[90%] max-w-2xl">
+            <h2 class="text-3xl text-primary mb-6 text-center">排行榜</h2>
+            <div id="leaderboard-content" class="space-y-4 mb-6">
+                <!-- 排行榜内容将通过 JavaScript 动态生成 -->
+            </div>
+            <div class="flex justify-center">
+                <button class="skill-button !rounded-button px-8 py-4 text-xl" onclick="document.getElementById('leaderboard-modal').style.display='none'">
+                    关闭
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 赞助模态框 -->
+    <div id="sponsor-modal">
+        <div class="modal-content text-center">
+            <h2 class="text-2xl text-primary mb-4">赞助作者</h2>
+            <img src="qr_code.png" alt="赞助二维码" class="mx-auto mb-4" style="max-width: 200px;">
+            <button class="skill-button !rounded-button px-4 py-2" onclick="document.getElementById('sponsor-modal').style.display='none'">
+                关闭
+            </button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script>
+        // 初始化游戏
+        window.onload = function() {
+            const canvas = document.getElementById('gameCanvas');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            const game = new GameController();
+
+            // 排行榜按钮点击事件
+            document.getElementById('leaderboardBtn').addEventListener('click', () => {
+                game.showLeaderboard();
+            });
+
+            // 赞助按钮点击事件
+            document.getElementById('sponsorBtn').addEventListener('click', () => {
+                document.getElementById('sponsor-modal').style.display = 'block';
+            });
+
+            // 自动聚焦用户名输入框
+            document.getElementById('username-input').focus();
+        };
+    </script>
+</body>
+</html> 
