@@ -340,6 +340,12 @@
 个人名片展示。
 
 - 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/贪吃蛇app/index.html)
+
+  ### 俄罗斯方块app（手机版改加了轮播图效果*6）
+
+个人名片展示。
+
+- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/俄罗斯方块/index.html)
 - 
 ## 贡献
 
