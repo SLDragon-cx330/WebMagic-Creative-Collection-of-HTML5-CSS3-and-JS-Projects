@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375px, initial-scale=1.0">
+    <title>俄罗斯方块</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#15B8A6'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: #001F3F;
+            width: 375px;
+            height: 762px;
+            overflow: hidden;
+            background-image: url('https://ai-public.mastergo.com/ai/img_res/a5b8f76d6688b2f16ee34d6bee74daef.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 1px;
+            border: 2px solid #4A90E2;
+            background: rgba(0, 31, 63, 0.8);
+            width: 216px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+        }
+        
+        .grid-cell {
+            aspect-ratio: 1;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+        }
+        
+        .preview-cell {
+            aspect-ratio: 1;
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .control-btn {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(74, 144, 226, 0.2));
+            border: 2px solid rgba(74, 144, 226, 0.8);
+            box-shadow: 0 0 0 1px rgba(74, 144, 226, 0.3), 0 0 0 3px rgba(74, 144, 226, 0.2), 0 8px 16px rgba(74, 144, 226, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            clip-path: polygon( 10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+        }
+        
+        .control-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 0 0 1px rgba(74, 144, 226, 0.3), 0 0 0 2px rgba(74, 144, 226, 0.2), 0 4px 8px rgba(74, 144, 226, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.2), rgba(255, 255, 255, 0.1));
+        }
+        
+        .control-btn:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease;
+            box-shadow: 0 0 0 1px rgba(74, 144, 226, 0.4), 0 0 0 3px rgba(74, 144, 226, 0.3), 0 8px 20px rgba(74, 144, 226, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(74, 144, 226, 0.25));
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+        }
+        
+        .lines-cleared-notification {
+            font-family: 'Pacifico', cursive;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-over-dialog button,
+        .sponsor-dialog button {
+            transition: all 0.3s ease;
+        }
+        
+        .game-over-dialog button:hover,
+        .sponsor-dialog button:hover {
+            transform: scale(1.05);
+        }
+        
+        .game-over-dialog button:active,
+        .sponsor-dialog button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="fixed top-0 w-full bg-gradient-to-r from-blue-900/90 to-blue-600/90 backdrop-blur-sm px-4 py-3 flex justify-between items-center z-50 border-b border-blue-400/30">
+        <div class="text-blue-100 text-sm flex items-center">
+            <i class="fas fa-ad mr-2"></i> 广告位招租
+        </div>
+        <div class="flex space-x-2">
+            <button class="text-blue-100 text-sm flex items-center !rounded-button bg-blue-500/20 px-3 py-1 border border-blue-400/50 hover:bg-blue-500/30 transition-all duration-300">
+<i class="fas fa-gamepad mr-2"></i>
+游玩简介
+</button>
+            <button class="text-blue-100 text-sm flex items-center !rounded-button bg-blue-500/20 px-3 py-1 border border-blue-400/50 hover:bg-blue-500/30 transition-all duration-300">
+<i class="fas fa-heart mr-2"></i>
+赞助作者
+</button>
+        </div>
+    </nav>
+    <main class="pt-16 pb-20 px-4">
+        <div class="bg-black/40 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-blue-400">
+            <div class="flex justify-between items-center mb-4">
+                <div class="text-blue-300">
+                    <div class="text-sm">分数</div>
+                    <div class="text-2xl font-bold text-primary">0</div>
+                </div>
+                <div class="text-blue-300">
+                    <div class="text-sm">等级</div>
+                    <div class="text-2xl font-bold text-secondary">1</div>
+                </div>
+                <div class="text-blue-300">
+                    <div class="text-sm">历史最高</div>
+                    <div class="text-2xl font-bold text-primary">0</div>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <div class="game-grid"></div>
+                <div class="w-24 space-y-4">
+                    <div class="preview-container">
+                        <div class="text-xs text-blue-300 mb-1">下一个</div>
+                        <div class="preview-grid bg-gray-50 p-0.5 border border-gray-200 rounded-md"></div>
+                    </div>
+                    <div class="preview-container">
+                        <div class="text-xs text-blue-300 mb-1">暂存</div>
+                        <div class="hold-grid bg-gray-50 p-0.5 border border-gray-200 rounded-md grid grid-cols-4 gap-0.5"></div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-blue-300 mb-2">关注作者</div>
+                        <div class="bg-black/40 p-3 rounded-lg border border-blue-400 flex flex-col items-center">
+                            <img src="抖音.png" class="w-16 h-16 object-cover rounded-lg mb-2">
+                            <div class="flex items-center">
+                                <i class="fab fa-tiktok text-primary mr-1"></i>
+                                <span class="text-xs text-blue-300">抖音号：I.will.return</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-center">
+                <div class="flex space-x-8">
+                    <div class="flex flex-col space-y-4 items-center">
+                        <div class="flex space-x-4">
+                            <button class="control-btn !rounded-button flex flex-col items-center">
+<i class="fas fa-pause text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">暂停</span>
+</button>
+                            <button class="control-btn !rounded-button flex flex-col items-center">
+<i class="fas fa-play text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">开始</span>
+</button>
+                            <button class="control-btn !rounded-button flex flex-col items-center">
+<i class="fas fa-arrows-rotate text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">重新开始</span>
+</button>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button class="control-btn !rounded-button flex flex-col items-center">
+<i class="fas fa-arrow-left text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">左移</span>
+</button>
+                            <button class="control-btn !rounded-button flex flex-col items-center">
+<i class="fas fa-arrow-down text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">落下</span>
+</button>
+                            <button class="control-btn !rounded-button flex flex-col items-center">
+<i class="fas fa-arrow-right text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">右移</span>
+</button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col space-y-4">
+                        <button class="control-btn !rounded-button bg-gradient-to-r from-primary/20 to-secondary/20 hover:from-primary/30 hover:to-secondary/30 transition-all duration-300 flex flex-col items-center">
+<i class="fas fa-arrow-rotate-left text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">左旋转</span>
+</button>
+                        <button class="control-btn !rounded-button bg-gradient-to-r from-primary/20 to-secondary/20 hover:from-primary/30 hover:to-secondary/30 transition-all duration-300 flex flex-col items-center">
+<i class="fas fa-arrow-rotate-right text-primary text-xl mb-1"></i>
+<span class="text-xs text-blue-300">右旋转</span>
+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="game.js"></script>
+</body>
+
+</html>
