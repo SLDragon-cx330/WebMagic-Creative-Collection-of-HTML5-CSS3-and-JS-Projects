@@ -352,7 +352,14 @@
 个人名片展示。
 
 - 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/俄罗斯方块2/index.html)
+
+### 生日祝福app（手机版改加了轮播图效果*6）
+
+个人名片展示。
+
+- 项目链接: [个人名片展示](https://sldragon-cx330.github.io/WebMagic-Creative-Collection-of-HTML5-CSS3-and-JS-Projects/生日祝福/index.html)
 - 
+
 ## 贡献
 
 如果你想为项目做出贡献，欢迎提出问题和提交请求！我们期待你的参与。
