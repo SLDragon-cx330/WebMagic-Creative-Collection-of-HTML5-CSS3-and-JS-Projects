@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="w-[375px] mx-auto">
+    <div class="relative min-h-screen flex flex-col items-center justify-center px-6 py-12">
+        <!-- <button id="musicBtn" class="fixed top-4 right-4 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 !rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-opacity z-10">
+            <i class="fas fa-music text-white text-lg"></i>
+        </button> -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="confetti bg-yellow-400" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="confetti bg-pink-400" style="left: 30%; animation-delay: 1s;"></div>
+            <div class="confetti bg-blue-400" style="left: 50%; animation-delay: 2s;"></div>
+            <div class="confetti bg-purple-400" style="left: 70%; animation-delay: 0.5s;"></div>
+            <div class="confetti bg-green-400" style="left: 90%; animation-delay: 1.5s;"></div>
+        </div>
+        <div class="w-full max-w-[280px] aspect-square mb-8 relative">
+            <img src="https://ai-public.mastergo.com/ai/img_res/c2e4e9f97694d454fb08e8b6ba9e548e.jpg"
+                alt="生日蛋糕"
+                class="w-full h-full object-contain">
+        </div>
+        <h1 class="text-4xl font-['ZCOOL_XiaoWei'] text-gray-800 mb-6 animate-bounce">
+            生日快乐，贺悦小朋友
+        </h1>
+        <div class="text-center mb-8">
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                愿你的生日充满欢乐和温馨<br>
+                愿每一个愿望都能成真<br>
+                愿未来的日子里永远开心快乐
+            </p>
+            <p class="text-gray-600 italic">
+                —— 来自刘少龙最真挚的祝福
+            </p>
+        </div>
+        <div class="flex flex-col gap-4 w-full max-w-[280px]">
+            <button id="blessBtn" class="w-full py-3 px-6 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium !rounded-button flex items-center justify-center gap-2 shadow-lg hover:opacity-90 transition-opacity">
+                <i class="fas fa-heart"></i>
+                送上祝福
+            </button>
+        </div>
+    </div>
+
+    <!-- 贺卡弹窗 -->
+    <div id="cardModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-[90%] w-[300px] relative">
+            <button id="closeCard" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center">
+                <h2 class="text-2xl font-['ZCOOL_XiaoWei'] text-gray-800 mb-4">生日快乐！</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    亲爱的贺悦小朋友：<br><br>
+                    在这个特别的日子里，<br>
+                    愿你的生日充满欢乐和惊喜，<br>
+                    愿你的每一天都像今天一样幸福，<br>
+                    愿你的未来充满无限可能！<br><br>
+                    生日快乐！
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="生日.mflac" type="audio/flac">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html> 
