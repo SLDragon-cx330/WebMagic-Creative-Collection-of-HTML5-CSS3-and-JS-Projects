@@ -1,0 +1,572 @@
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生日快乐，我的闺蜜！</title>
+    <script src="https://res.gemcoder.com/js/reload.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#FF6B8B',
+              secondary: '#FFD166',
+              accent: '#06D6A0',
+              dark: '#118AB2',
+              light: '#F7F9FC'
+            },
+            fontFamily: {
+              cursive: ['"Comic Sans MS"', '"Bubblegum Sans"', 'cursive'],
+              handwriting: ['"Segoe Script"', '"Brush Script MT"', 'cursive']
+            },
+            animation: {
+              'float': 'float 3s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'wiggle': 'wiggle 1s ease-in-out infinite',
+              'bounce-slow': 'bounce 3s infinite'
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': {
+                  transform: 'translateY(0)'
+                },
+                '50%': {
+                  transform: 'translateY(-10px)'
+                }
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+          .text-shadow {
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+          }
+          .text-shadow-lg {
+              text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+          }
+          .bg-glass {
+              background: rgba(255, 255, 255, 0.7);
+              backdrop-filter: blur(10px);
+          }
+          .rotate-hover {
+              transition: transform 0.3s ease;
+          }
+          .rotate-hover:hover {
+              transform: rotate(5deg) scale(1.05);
+          }
+          .confetti {
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              animation: confetti-fall 5s linear infinite;
+          }
+          @keyframes confetti-fall {
+              0% {
+                  transform: translateY(-100vh) rotate(0deg);
+                  opacity: 1;
+              }
+              100% {
+                  transform: translateY(100vh) rotate(720deg);
+                  opacity: 0;
+              }
+          }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 min-h-screen overflow-x-hidden relative"
+  >
+    <!-- 背景装饰元素 -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+      <div
+        class="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-1/3 right-1/3 w-40 h-40 bg-secondary/20 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute top-2/3 left-1/2 w-24 h-24 bg-accent/20 rounded-full blur-3xl"
+      ></div>
+    </div>
+    <!-- [MODULE] abc_主内容区域 -->
+    <main class="container mx-auto px-4 py-8 relative">
+      <!-- [MODULE] d23_生日祝福页面 -->
+      <div id="birthday-page" class="max-w-md mx-auto">
+        <!-- [MODULE] 33f_生日祝福页面:页面标题 -->
+        <div class="text-center mb-8 mt-4">
+          <h1
+            class="text-[clamp(2rem,8vw,3.5rem)] font-handwriting font-bold text-primary animate-pulse-slow text-shadow-lg"
+          >
+            生日快乐！
+          </h1>
+          <p class="text-gray-600 mt-2 text-lg">致我最亲爱的闺蜜</p>
+        </div>
+        <!-- [/MODULE] 33f_生日祝福页面:页面标题 -- 包含主标题"生日快乐！"和副标题"致我最亲爱的闺蜜" -->
+        <!-- [MODULE] 45g_生日祝福页面:照片区域 -->
+        <div
+          class="relative mb-8 rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:shadow-2xl rotate-hover flex justify-center items-center bg-gray-100"
+        >
+          <img
+            src="./1.jpg"
+            alt="我们的美好时光"
+            class="w-full max-h-[600px] object-contain rounded-2xl"
+            loading="lazy"
+          />
+          <div
+            class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4"
+          >
+            <p class="text-white font-medium text-shadow">我们的美好回忆</p>
+          </div>
+        </div>
+        <!-- [/MODULE] 45g_生日祝福页面:照片区域 -- 展示闺蜜合照，带有渐变文字说明"我们的美好回忆" -->
+        <!-- [MODULE] 78h_生日祝福页面:祝福卡片 -->
+        <div
+          class="bg-white rounded-3xl shadow-lg p-6 mb-8 transform transition-all duration-300 hover:shadow-xl"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="text-primary">
+              <i class="fas fa-heart text-2xl animate-pulse"> </i>
+            </div>
+            <div class="text-secondary">
+              <i class="fas fa-gift text-2xl"> </i>
+            </div>
+          </div>
+          <div class="space-y-4 text-gray-700">
+            <p class="text-lg leading-relaxed">见字如晤，展信舒颜。</p>
+            <p class="leading-relaxed">
+              信的开头，是祝你生日快乐！又长大一岁咯，新的一年我希望你可以勇敢做自己，我希望你活得顺遂又热烈。在这玫瑰与荆棘相交的路，我们好像有小部分的快乐和数不清的小小烦恼，在你无数个动摇的瞬间，我希望你永远明白，你快乐才是最大的快乐！
+            </p>
+            <p class="leading-relaxed">
+              好多人会代替好多人，而我有幸能在你熠熠生辉的日子里头分享你的喜怒哀乐、点点滴滴，在每一个稀松平常的日子里分享彼此的大事小事，聊不完的八卦和某些奇思妙想。我们还有很久很久，我们还要继续期待想念相约见面。
+            </p>
+            <p class="leading-relaxed">
+              生日快乐宝子，祝你不仅快乐，而且永远自由，知性从容，平安喜樂，岁岁年年，无事绊心弦，所愿皆所得。希望你能成为勇敢的大人和可爱的小朋友。
+            </p>
+            <p class="leading-relaxed">
+              遇见你很开心，友情不需要用很多东西去验证因为我们就是最好的证明，我想祝你自由，平安，勇敢，在爱与不爱的路上别怕还有我，我永远是最好的倾听者。
+            </p>
+            <p class="leading-relaxed">
+              未来的路很长，我希望你一直走在开满鲜花的路上遇见更好的自己！希望不管你周围的世界，有多坏，有多乱，不管你崩溃的时候有多难堪，总有一个人在你身旁，拉着你的手变好，谢谢你的出现，让我有一个可嘴角上扬的青春。
+            </p>
+            <p class="leading-relaxed font-medium text-primary text-center text-xl mt-6">
+              生日快乐！！！
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-100 flex justify-center">
+            <div class="flex space-x-3">
+              <i class="fas fa-star text-yellow-400 text-xl"> </i>
+              <i class="fas fa-heart text-pink-500 text-xl"> </i>
+              <i class="fas fa-glass-cheers text-blue-500 text-xl"> </i>
+              <i class="fas fa-gem text-purple-500 text-xl"> </i>
+              <i class="fas fa-smile text-amber-500 text-xl"> </i>
+            </div>
+          </div>
+        </div>
+        <!-- [/MODULE] 78h_生日祝福页面:祝福卡片 -- 包含生日祝福文字内容，左侧爱心图标，右侧礼物图标，底部装饰图标 -->
+        <!-- [MODULE] 90j_生日祝福页面:互动按钮 -->
+        <div class="flex flex-col space-y-4 mb-8">
+          <!-- 放烟花 -->
+          <button
+            id="show-confetti"
+            class="bg-secondary hover:bg-secondary/90 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            <i class="fas fa-confetti-bomb"> </i>
+            <span> 放烟花庆祝 </span>
+          </button>
+          <!-- 闺蜜语录 -->
+          <button
+            id="show-quote"
+            class="bg-accent hover:bg-accent/90 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            <i class="fas fa-comment-dots"> </i>
+            <span> 闺蜜语录 </span>
+          </button>
+          <!-- 今日小惊喜 -->
+          <button
+            id="show-surprise"
+            class="bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            <i class="fas fa-wand-magic-sparkles"> </i>
+            <span> 今日小惊喜 </span>
+          </button>
+        </div>
+        <!-- [/MODULE] 90j_生日祝福页面:互动按钮 -- 包含三个按钮，分别是"放烟花庆祝"、"闺蜜语录"和"今日小惊喜"，实现不同的互动效果 -->
+        <!-- [MODULE] 23k_生日祝福页面:倒计时 -->
+        <div
+          class="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-md mb-8"
+        >
+          <h3 class="text-center font-semibold text-gray-700 mb-2">
+            距离下一个生日还有
+          </h3>
+          <div id="countdown" class="grid grid-cols-4 gap-2 text-center">
+            <div class="bg-gray-100 rounded-lg p-2">
+              <div id="days" class="text-xl font-bold text-primary">364</div>
+              <div class="text-xs text-gray-500">天</div>
+            </div>
+            <div class="bg-gray-100 rounded-lg p-2">
+              <div id="hours" class="text-xl font-bold text-primary">23</div>
+              <div class="text-xs text-gray-500">时</div>
+            </div>
+            <div class="bg-gray-100 rounded-lg p-2">
+              <div id="minutes" class="text-xl font-bold text-primary">59</div>
+              <div class="text-xs text-gray-500">分</div>
+            </div>
+            <div class="bg-gray-100 rounded-lg p-2">
+              <div id="seconds" class="text-xl font-bold text-primary">59</div>
+              <div class="text-xs text-gray-500">秒</div>
+            </div>
+          </div>
+        </div>
+        <!-- [/MODULE] 23k_生日祝福页面:倒计时 -- 显示距离下一个生日的天、时、分、秒倒计时 -->
+        <!-- [MODULE] 56l_生日祝福页面:礼物链接 -->
+        <div class="text-center mb-6">
+          <p class="text-gray-600 mb-3">点击下方领取你的专属礼物</p>
+          <button
+            id="open-gift"
+            class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
+          >
+            <i class="fas fa-gift mr-2"> </i>
+            打开礼物
+          </button>
+        </div>
+        <!-- [/MODULE] 56l_生日祝福页面:礼物链接 -- 包含文字提示和打开礼物的链接按钮 -->
+        <!-- [MODULE] 89m_生日祝福页面:页脚 -->
+        <div class="text-center text-gray-500 text-sm">
+          <p>With all my love, on your special day ❤️</p>
+          <p class="mt-1">永远爱你的闺蜜</p>
+        </div>
+        <!-- [/MODULE] 89m_生日祝福页面:页脚 -- 包含底部署名和爱心符号 -->
+      </div>
+      <!-- [/MODULE] d23_生日祝福页面 -- 包含生日祝福的完整内容，包括标题、照片、祝福文字、互动按钮、倒计时和礼物链接 -->
+    </main>
+    <!-- [/MODULE] abc_主内容区域 -- 包含生日祝福页面的所有内容 -->
+    <!-- [MODULE] 67n_生日祝福页面:弹窗 -->
+    <div
+      id="quote-modal"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-white rounded-2xl p-6 max-w-md mx-4 transform transition-all duration-300 scale-95 opacity-0"
+        id="modal-content"
+      >
+        <div class="flex justify-end mb-4">
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times text-xl"> </i>
+          </button>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-quote-left text-primary/30 text-5xl mb-4"> </i>
+          <p
+            id="quote-text"
+            class="text-gray-700 text-lg italic mb-6 leading-relaxed"
+          >
+            闺蜜就是那个陪你笑、陪你哭、陪你疯、陪你闹，永远站在你身边的人。
+          </p>
+          <div class="text-primary font-medium">— 我们的友谊语录</div>
+        </div>
+      </div>
+    </div>
+    <!-- [/MODULE] 67n_生日祝福页面:弹窗 -- 展示闺蜜语录的弹窗，包含关闭按钮和语录内容 -->
+    <!-- [MODULE] 礼物弹窗 -->
+    <div
+      id="gift-modal"
+      class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 rounded-3xl p-6 sm:p-8 max-w-lg mx-4 max-h-[80vh] overflow-y-auto transform transition-all duration-500 scale-0 opacity-0 shadow-2xl border-4 border-primary/20"
+        id="gift-modal-content"
+      >
+        <div class="text-center">
+          <!-- 礼物图标动画 -->
+          <div class="mb-6 relative">
+            <div class="inline-block animate-bounce-slow">
+              <i class="fas fa-gift text-6xl text-primary"> </i>
+            </div>
+            <div class="absolute -top-2 -right-2">
+              <i class="fas fa-heart text-2xl text-pink-500 animate-pulse"> </i>
+            </div>
+          </div>
+          
+          <!-- 礼物标题 -->
+          <h2 class="text-3xl font-bold text-primary mb-4 font-handwriting">
+            专属礼物已送达！
+          </h2>
+          
+          <!-- 礼物内容 -->
+          <div class="bg-white/80 rounded-2xl p-6 mb-6 shadow-lg">
+            <div class="space-y-4 text-gray-700">
+              <div class="flex items-center justify-center gap-3 mb-4">
+                <i class="fas fa-star text-yellow-400 text-2xl"> </i>
+                <i class="fas fa-heart text-pink-500 text-2xl"> </i>
+                <i class="fas fa-gem text-purple-500 text-2xl"> </i>
+              </div>
+              <p class="text-lg font-medium text-primary mb-3">
+                最珍贵的礼物
+              </p>
+              <p class="leading-relaxed text-gray-600">
+                这份礼物不是用金钱可以衡量的，而是用时间和真心编织的。我想送给你的是：
+              </p>
+              <ul class="text-left space-y-2 mt-4 text-gray-700">
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-accent mt-1"> </i>
+                  <span>一份真挚的友谊，永远不变</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-accent mt-1"> </i>
+                  <span>一个温暖的拥抱，随时都在</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-accent mt-1"> </i>
+                  <span>一颗真诚的心，为你祝福</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-accent mt-1"> </i>
+                  <span>一生的陪伴，不离不弃</span>
+                </li>
+              </ul>
+              <div class="mt-6 pt-4 border-t border-gray-200">
+                <p class="text-primary font-medium text-lg">
+                  愿我们的友谊如这礼物般珍贵，永远闪闪发光 ✨
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 关闭按钮 -->
+          <button
+            id="close-gift-modal"
+            class="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          >
+            <i class="fas fa-heart mr-2"> </i>
+            收下这份心意
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- [/MODULE] 礼物弹窗 -->
+    <!-- [JSMOD] eft_生日祝福交互功能 -->
+    <script id="birthday-interactions">
+      // 等待DOM加载完成
+      document.addEventListener('DOMContentLoaded', function () {
+        // 获取DOM元素
+        var showConfettiBtn = document.getElementById('show-confetti');
+        var showQuoteBtn = document.getElementById('show-quote');
+        var showSurpriseBtn = document.getElementById('show-surprise');
+        var openGiftBtn = document.getElementById('open-gift');
+        var quoteModal = document.getElementById('quote-modal');
+        var modalContent = document.getElementById('modal-content');
+        var closeModal = document.getElementById('close-modal');
+        var giftModal = document.getElementById('gift-modal');
+        var giftModalContent = document.getElementById('gift-modal-content');
+        var closeGiftModal = document.getElementById('close-gift-modal');
+        var quoteText = document.getElementById('quote-text');
+        var body = document.body;
+
+        // 闺蜜语录数组
+        var quotes = ["闺蜜就是那个陪你笑、陪你哭、陪你疯、陪你闹，永远站在你身边的人。", "我们一起走过的路，看过的风景，都是我生命中最珍贵的回忆。", "不管未来有多远，我们的友谊永远不会改变。", "谢谢你在我迷茫的时候给我方向，在我失落的时候给我力量。", "真正的闺蜜就是，即使很久不见，再见面也像昨天刚见过一样自然。", "我们的友谊不需要每天联系，但需要时永远都在。", "闺蜜就是另一个自己，了解你的所有，依然爱你所有。", "和你在一起的时光，总是那么轻松快乐，谢谢你我的闺蜜。"];
+
+        // 今日小惊喜文案数组
+        var surprises = [
+          "今日任务：不管发生什么，都要记得对自己说一句——我真的很棒！",
+          "给自己一个小奖励吧：今天可以多吃一块蛋糕，理由是——你值得。",
+          "拍一张好看的自拍，留住今天这个闪闪发光的你。",
+          "给未来的自己发一条信息（可以是备忘录），告诉她：你一定会越来越幸福。",
+          "今晚睡前，请好好地抱抱自己，说一句：辛苦啦，我的小朋友。",
+          "今天的你，适合被全世界温柔以待，包括你自己。",
+          "以后的每一年生日，我都想亲口对你说：谢谢你还在我身边。",
+          "把今天遇到的一件小开心记下来，哪怕只是好喝的一杯奶茶。"
+        ];
+
+        // （已移除音乐播放逻辑）
+
+        // 生成随机语录
+        showQuoteBtn.addEventListener('click', function () {
+          var randomIndex = Math.floor(Math.random() * quotes.length);
+          quoteText.textContent = quotes[randomIndex];
+
+          // 显示弹窗
+          quoteModal.classList.remove('hidden');
+          setTimeout(function () {
+            modalContent.classList.remove('scale-95', 'opacity-0');
+            modalContent.classList.add('scale-100', 'opacity-100');
+          }, 10);
+
+          // 添加按钮动画效果
+          showQuoteBtn.classList.add('animate-bounce-slow');
+          setTimeout(function () {
+            showQuoteBtn.classList.remove('animate-bounce-slow');
+          }, 500);
+        });
+
+        // 今日小惊喜
+        showSurpriseBtn.addEventListener('click', function () {
+          var randomIndex = Math.floor(Math.random() * surprises.length);
+          var text = surprises[randomIndex];
+
+          // 使用浏览器弹窗呈现小惊喜
+          alert("🎁 今日小惊喜：\n\n" + text);
+
+          // 按钮轻微动画
+          showSurpriseBtn.classList.add('animate-pulse');
+          setTimeout(function () {
+            showSurpriseBtn.classList.remove('animate-pulse');
+          }, 800);
+        });
+
+        // 关闭弹窗
+        closeModal.addEventListener('click', closeQuoteModal);
+
+        // 点击弹窗外部关闭
+        quoteModal.addEventListener('click', function (e) {
+          if (e.target === quoteModal) {
+            closeQuoteModal();
+          }
+        });
+
+        // 关闭弹窗函数
+        function closeQuoteModal() {
+          modalContent.classList.remove('scale-100', 'opacity-100');
+          modalContent.classList.add('scale-95', 'opacity-0');
+          setTimeout(function () {
+            quoteModal.classList.add('hidden');
+          }, 300);
+        }
+
+        // 打开礼物功能
+        openGiftBtn.addEventListener('click', function () {
+          // 显示礼物弹窗
+          giftModal.classList.remove('hidden');
+          setTimeout(function () {
+            giftModalContent.classList.remove('scale-0', 'opacity-0');
+            giftModalContent.classList.add('scale-100', 'opacity-100');
+          }, 10);
+
+          // 添加按钮动画效果
+          openGiftBtn.classList.add('animate-pulse');
+          setTimeout(function () {
+            openGiftBtn.classList.remove('animate-pulse');
+          }, 1000);
+
+          // 同时触发纸屑效果
+          createConfetti();
+        });
+
+        // 关闭礼物弹窗
+        closeGiftModal.addEventListener('click', function () {
+          closeGiftModalFunc();
+        });
+
+        // 点击礼物弹窗外部关闭
+        giftModal.addEventListener('click', function (e) {
+          if (e.target === giftModal) {
+            closeGiftModalFunc();
+          }
+        });
+
+        // 关闭礼物弹窗函数
+        function closeGiftModalFunc() {
+          giftModalContent.classList.remove('scale-100', 'opacity-100');
+          giftModalContent.classList.add('scale-0', 'opacity-0');
+          setTimeout(function () {
+            giftModal.classList.add('hidden');
+          }, 500);
+        }
+
+        // 生成彩色纸屑效果
+        showConfettiBtn.addEventListener('click', function () {
+          createConfetti();
+
+          // 添加按钮动画效果
+          showConfettiBtn.classList.add('rotate-12');
+          setTimeout(function () {
+            showConfettiBtn.classList.remove('rotate-12');
+          }, 300);
+        });
+
+        // 创建彩色纸屑
+        function createConfetti() {
+          var colors = ['#FF6B8B', '#FFD166', '#06D6A0', '#118AB2', '#7209B7', '#F72585', '#4CC9F0'];
+          var container = document.createElement('div');
+          container.className = 'fixed inset-0 pointer-events-none z-50';
+          document.body.appendChild(container);
+          for (var i = 0; i < 150; i++) {
+            var confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = "".concat(Math.random() * 100, "vw");
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = "".concat(Math.random() * 10 + 5, "px");
+            confetti.style.height = "".concat(Math.random() * 10 + 5, "px");
+            confetti.style.animationDuration = "".concat(Math.random() * 3 + 2, "s");
+            confetti.style.animationDelay = "".concat(Math.random() * 2, "s");
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            container.appendChild(confetti);
+          }
+
+          // 3秒后移除纸屑
+          setTimeout(function () {
+            container.remove();
+          }, 5000);
+        }
+
+        // 倒计时功能
+        function updateCountdown() {
+          var today = new Date();
+          var nextBirthday = new Date(today.getFullYear(), 11, 31); // 假设生日是12月31日，实际应该根据真实生日修改
+
+          // 如果今年的生日已经过了，计算明年的
+          if (nextBirthday < today) {
+            nextBirthday.setFullYear(today.getFullYear() + 1);
+          }
+          var diff = nextBirthday - today;
+          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          var hours = Math.floor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+          var minutes = Math.floor(diff % (1000 * 60 * 60) / (1000 * 60));
+          var seconds = Math.floor(diff % (1000 * 60) / 1000);
+          document.getElementById('days').textContent = days;
+          document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+          document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+          document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // 初始化倒计时并每秒更新
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // 添加页面滚动动画
+        var animateOnScroll = function animateOnScroll() {
+          var elements = document.querySelectorAll('.rotate-hover, #countdown, .bg-white');
+          elements.forEach(function (element) {
+            var elementPosition = element.getBoundingClientRect().top;
+            var windowHeight = window.innerHeight;
+            if (elementPosition < windowHeight * 0.85) {
+              element.classList.add('opacity-100', 'translate-y-0');
+              element.classList.remove('opacity-0', 'translate-y-4');
+            }
+          });
+        };
+
+        // 初始样式设置
+        document.querySelectorAll('.rotate-hover, #countdown, .bg-white').forEach(function (el) {
+          el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+        });
+
+        // 页面加载和滚动时触发动画
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+
+        // 初始化动画
+        setTimeout(animateOnScroll, 300);
+      });
+    </script>
+    <!-- [/JSMOD] eft_生日祝福交互功能 -- 实现播放生日歌、显示闺蜜语录弹窗、生成彩色纸屑效果和生日倒计时功能 -->
+  </body>
+</html>
